@@ -23,3 +23,5 @@ Things you may want to cover:
 
 * ...
 https://www.dropbox.com/sh/isay8r4vxnccowt/AAA5Fq9wfxiKWfVWBOJOOA-La?dl=0
+
+ssh ubuntu@54.244.68.241

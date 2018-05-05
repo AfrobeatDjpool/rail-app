@@ -1,0 +1,50 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="row">
+  <div class="container">
+    <div id="loginbox"  class="mainbox col-md-6 col-md-offset-3 col-sm-7 col-sm-offset-2 allSides box-outernew">
+      <div class="panel panel-info " >
+        <div class="panel-heading">
+          <div class="panel-title font-bold" >Sign Up</div>
+          <div class="panel-head"></div>
+        </div>
+        <div  class="panel-body panel-bodylogin-signin" >
+          <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+          <div class="form-inputs">
+            <%= devise_error_messages!%>
+            <br><br> 
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-5 control-label">Email</label>
+              <div class="col-sm-7">
+                <input type="email" class="form-control " id="inputEmail3" name="user[email]" placeholder="email">
+              </div>
+            </div>
+            <br><br>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-5 control-label">Password</label>
+              <div class="col-sm-7">
+                <input type="password" class="form-control " id="inputEmail3"  name="user[password]" placeholder="password">
+              </div>
+            </div>
+            <br><br>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-5 control-label">Password Confirmation</label>
+              <div class="col-sm-7">
+                <input type="password" class="form-control " id="inputEmail3"  name="user[password_confirmation]" placeholder="password confirmation">
+              </div>
+            </div>
+            <div class="form-group ">
+              <div class="col-sm-7 ">
+                <br>
+                <%= f.submit "Sign Up", :class=>"btn btn-primary "%>
+              </div>
+            </div>
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+<br>
+<br>

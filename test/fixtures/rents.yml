@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  rut: 
+  dv: MyString
+  first_name: MyString
+  cod_act: 
+  email: MyString
+  rank: 
+  date_act: 2018-05-05 19:41:11
+  origin: MyString
+
+two:
+  user_id: 1
+  rut: 
+  dv: MyString
+  first_name: MyString
+  cod_act: 
+  email: MyString
+  rank: 
+  date_act: 2018-05-05 19:41:11
+  origin: MyString

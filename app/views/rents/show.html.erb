@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @rent.user_id %>
+</p>
+
+<p>
+  <strong>Rut:</strong>
+  <%= @rent.rut %>
+</p>
+
+<p>
+  <strong>Dv:</strong>
+  <%= @rent.dv %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @rent.first_name %>
+</p>
+
+<p>
+  <strong>Cod act:</strong>
+  <%= @rent.cod_act %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @rent.email %>
+</p>
+
+<p>
+  <strong>Rank:</strong>
+  <%= @rent.rank %>
+</p>
+
+<p>
+  <strong>Date act:</strong>
+  <%= @rent.date_act %>
+</p>
+
+<p>
+  <strong>Origin:</strong>
+  <%= @rent.origin %>
+</p>
+
+<%= link_to 'Edit', edit_rent_path(@rent) %> |
+<%= link_to 'Back', rents_path %>

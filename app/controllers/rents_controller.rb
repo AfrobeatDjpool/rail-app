@@ -49,12 +49,12 @@ class RentsController < ApplicationController
             rent_data["ano_fab"] =  row[8]
             rent_data["chasis"] = row[9]
             rent_data["numero_motor"] = row[10]   
-            rent_data["date_of_db"] = row[11]       
-            # rent_data["rut"] = row[11]
-            # rent_data["dv"] = row[12]
-            # rent_data["first_name"] = row[13]
-            # rent_data["fines"] = row[14]
-          
+            rent_data["rut"] = row[11]
+            rent_data["dv"] = row[12]
+            rent_data["first_name"] = row[13]
+            rent_data["fines"] = row[14]
+            rent_data["date_of_db"] = row[15]       
+
             rents << rent_data
           end
       }

@@ -5,7 +5,7 @@ class RentsController < ApplicationController
   # GET /rents.json
   def index
     if params[:name]
-      @rents = Rent.search(params[:name]).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+      @rents = Rent.search(params).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
     else
       @rents = Rent.paginate(:page => params[:page], :per_page => 10)
     end

@@ -4,7 +4,11 @@ class RentsController < ApplicationController
   # GET /rents
   # GET /rents.json
   def index
-    @rents = Rent.paginate(:page => params[:page], :per_page => 10)
+    if params[:name]
+      @rents = Rent.search(params[:name]).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    else
+      @rents = Rent.paginate(:page => params[:page], :per_page => 10)
+    end
   end
 
   # GET /rents/1

@@ -7,10 +7,15 @@ class ImportJob < ApplicationJob
     rents = []
     inserts = []
     time = Time.now.to_s(:db)
+    require 'open-uri'
 
-      CSV.foreach(path, :headers => false, :encoding => 'ISO-8859-1').with_index { |row,index|
+      csv_text = open(path)
+      csv = CSV.parse(csv_text, :headers=>false, :encoding => 'ISO-8859-1')
+      # CSV.foreach(path, :headers => false, :encoding => 'ISO-8859-1').with_index { |row,index|
+      csv.with_index { |row,index|
         # ["user_id", "patente", "dv_patente", "marca", "modelo", "tipo", "fecha_ult_trans", "color", "resto_color", "ano_fab", "chasis", "numero_motor", "rut", "dv", "nombre", "multas","date_of_db","created_at","updated_at"]
           if index != 0
+            puts row
             # inserts.push "(#{current_user.try(:id)}, #{row[0]}, #{row[1]}, #{row[2]}, #{row[3]}, #{row[4]}, #{row[5]}, #{row[6]}, #{row[7]}, #{row[8]}, #{row[9]}, #{row[10]}, #{row[11]}, #{row[12]}, #{row[13]}, #{row[14]}, #{row[15]}, '#{time}', '#{time}')"
             rent_data = {}
             rent_data["user_id"] = current_user.try(:id)
@@ -37,8 +42,8 @@ class ImportJob < ApplicationJob
         #remove first row with column name and make a new array with rents
       # rents = rents[1..rents.length]
 
-    # Rent.import rents
-    Rent.create!(rents)
+    Rent.import rents
+    # Rent.create!(rents)
 
       # @rent = Rent.create!(rents)
     # puts ["user_id", "patente", "dv_patente", "brand", "model", "tipo", "date_ult_trans", "color", "rest_color", "ano_fab", "chasis", "numero_motor", "rut", "dv", "first_name", "fines","date_of_db","created_at","updated_at"]

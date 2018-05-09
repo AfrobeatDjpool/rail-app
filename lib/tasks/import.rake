@@ -5,7 +5,7 @@ namespace :import do
      	puts "========= Importing Data on Production =========="
 	    ImportWorker.perform_async('https://s3-us-west-2.amazonaws.com/cars-database/combined-rnv-files.csv', User.first)
     else
-     	puts "========= Importing Data on Deveopment =========="
+     	puts "========= Importing Data on Development =========="
 	    ImportWorker.perform_async('https://s3-us-west-2.amazonaws.com/cars-database/Test2.csv', User.first)
 	  end
   end

@@ -9,7 +9,8 @@ class ImportWorker
     time = Time.now.to_s(:db)
     require 'open-uri'
 
-      csv_text = open(path)
+      csv_text = open(path).read
+      puts "========= File Read Out =========="
       csv = CSV.parse(csv_text, :headers=>false, :encoding => 'ISO-8859-1')
       # CSV.foreach(path, :headers => false, :encoding => 'ISO-8859-1').with_index { |row,index|
       csv.with_index { |row,index|

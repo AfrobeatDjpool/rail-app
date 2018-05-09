@@ -28,4 +28,4 @@ ssh ubuntu@54.244.68.241
 
 https://s3-us-west-2.amazonaws.com/cars-database/combined-rnv-files.csv
 
-rake import:rnv
+rake import:rnv RAILS_ENV=production

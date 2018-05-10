@@ -42,23 +42,25 @@
     <div class="main-body">
     	<p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-      <%= link_to 'New Rent', new_rent_path, class: "btn btn-primary" %>
-      <%= link_to 'Brand Chart', chart_rents_path(type: "brand"), class: "btn btn-primary" %>
-      <%= link_to 'Model Chart', chart_rents_path(type: "model"), class: "btn btn-primary" %>
-      <%= link_to 'Date of DB Chart', chart_rents_path(type: "date_of_db"), class: "btn btn-primary" %>
-      <%= link_to 'Patente Chart', chart_rents_path(type: "patente"), class: "btn btn-primary" %>
-      <%= link_to 'Typo Chart', chart_rents_path(type: "typo"), class: "btn btn-primary" %>
-      <%= link_to 'DV_Patente Chart', chart_rents_path(type: "db_patente"), class: "btn btn-primary" %>
-      <%= link_to 'Date ult trans Chart', chart_rents_path(type: "date_ult_trans"), class: "btn btn-primary" %>
-      <%= link_to 'Color Chart', chart_rents_path(type: "color"), class: "btn btn-primary" %>
-      <%= link_to 'Rest Color Chart', chart_rents_path(type: "rest_color"), class: "btn btn-primary" %>
-      <%= link_to 'Ano Fab_data Chart', chart_rents_path(type: "ano_fab"), class: "btn btn-primary" %>
-      <%= link_to 'Chasis Chart', chart_rents_path(type: "chasis"), class: "btn btn-primary" %>
-      <%= link_to 'Numero motor data Chart', chart_rents_path(type: "numero_motor"), class: "btn btn-primary" %>
-      <%= link_to 'RUT Chart', chart_rents_path(type: "rut"), class: "btn btn-primary" %>
-      <%= link_to 'DV Chart', chart_rents_path(type: "dv"), class: "btn btn-primary" %>
-      <%= link_to 'Name Chart', chart_rents_path(type: "first_name"), class: "btn btn-primary" %>
-      <%= link_to 'Fines Chart', chart_rents_path(type: "fines"), class: "btn btn-primary" %>
+      <div class="form-group">
+        <%= link_to 'New Rent', new_rent_path, class: "btn btn-primary" %>
+        <%= link_to 'Brand Chart', chart_rents_path(type: "brand"), class: "btn btn-primary" %>
+        <%= link_to 'Model Chart', chart_rents_path(type: "model"), class: "btn btn-primary" %>
+        <%= link_to 'Date of DB Chart', chart_rents_path(type: "date_of_db"), class: "btn btn-primary" %>
+        <%= link_to 'Patente Chart', chart_rents_path(type: "patente"), class: "btn btn-primary" %>
+        <%= link_to 'Typo Chart', chart_rents_path(type: "typo"), class: "btn btn-primary" %>
+        <%= link_to 'DV_Patente Chart', chart_rents_path(type: "db_patente"), class: "btn btn-primary" %>
+        <%= link_to 'Date ult trans Chart', chart_rents_path(type: "date_ult_trans"), class: "btn btn-primary" %>
+        <%= link_to 'Color Chart', chart_rents_path(type: "color"), class: "btn btn-primary" %>
+        <%= link_to 'Rest Color Chart', chart_rents_path(type: "rest_color"), class: "btn btn-primary" %>
+        <%= link_to 'Ano Fab_data Chart', chart_rents_path(type: "ano_fab"), class: "btn btn-primary" %>
+        <%= link_to 'Chasis Chart', chart_rents_path(type: "chasis"), class: "btn btn-primary" %>
+        <%= link_to 'Numero motor data Chart', chart_rents_path(type: "numero_motor"), class: "btn btn-primary" %>
+        <%= link_to 'RUT Chart', chart_rents_path(type: "rut"), class: "btn btn-primary" %>
+        <%= link_to 'DV Chart', chart_rents_path(type: "dv"), class: "btn btn-primary" %>
+        <%= link_to 'Name Chart', chart_rents_path(type: "first_name"), class: "btn btn-primary" %>
+        <%= link_to 'Fines Chart', chart_rents_path(type: "fines"), class: "btn btn-primary" %>
+      </div>
     <%= yield %>
     </div>
     <footer class="footer">

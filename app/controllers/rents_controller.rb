@@ -65,8 +65,40 @@ class RentsController < ApplicationController
     end
   end
 
-  def import
-   
+  def chart
+    if params[:type] == 'brand'
+      @data = Rent.group(:brand).count.to_a.insert(0,["BRAND", "COUNT"])
+    elsif params[:type] == 'model'
+      @data = Rent.group(:model).count.to_a.insert(0,["MODEL", "COUNT"])
+    elsif params[:type] == 'date_of_db'
+      @data = Rent.group(:date_of_db).count.to_a.insert(0,["DATE OF DB", "COUNT"])
+    elsif params[:type] == 'patente'
+      @data = Rent.group(:patente).count.to_a.insert(0,["PATENTE", "COUNT"])
+    elsif params[:type] == 'dv_patente'
+      @data = Rent.group(:dv_patente).count.to_a.insert(0,["DV_PATENTE", "COUNT"])
+    elsif params[:type] == 'typo'
+      @data = Rent.group(:tipo).count.to_a.insert(0,["TYPE", "COUNT"])
+    elsif params[:type] == 'date_ult_trans'
+      @data = Rent.group(:date_ult_trans).count.to_a.insert(0,["Date ult trans", "COUNT"])
+    elsif params[:type] == 'color'
+      @data = Rent.group(:color).count.to_a.insert(0,["COLOR", "COUNT"])
+    elsif params[:type] == 'rest_color'
+      @data = Rent.group(:rest_color).count.to_a.insert(0,["REST COLOR", "COUNT"])
+    elsif params[:type] == 'ano_fab'
+      @data = Rent.group(:ano_fab).count.to_a.insert(0,["Ano FAB", "COUNT"])
+    elsif params[:type] == 'chasis'
+      @data = Rent.group(:chasis).count.to_a.insert(0,["CHASIS", "COUNT"])
+    elsif params[:type] == 'numero_motor'
+      @data = Rent.group(:numero_motor).count.to_a.insert(0,["Munbero MOTOR", "COUNT"])
+    elsif params[:type] == 'rut'
+      @data = Rent.group(:rut).count.to_a.insert(0,["RUT", "COUNT"])
+    elsif params[:type] == 'dv'
+      @data = Rent.group(:dv).count.to_a.insert(0,["DB", "COUNT"])
+    elsif params[:type] == 'first_name'
+      @data = Rent.group(:first_name).count.to_a.insert(0,["NAME", "COUNT"])
+    elsif params[:type] == 'fines'
+      @data = Rent.group(:fines).count.to_a.insert(0,["FINES", "COUNT"])
+    end  
   end
 
   private

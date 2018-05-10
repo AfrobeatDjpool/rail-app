@@ -1,0 +1,43 @@
+<!--Load the AJAX API-->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyAvuPSxdugPS2FJQibo-i78wVZHWgmKemk"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Draw the chart and set the chart values
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable(<%=raw @brand_data %>);
+      // Optional; add a title and set the width and height of the chart
+      var options = {'title':'All Brand Database', 'width':400, 'height':300};
+      // Display the chart inside the <div> element with id="chart_div"
+      var chart = new google.visualization.PieChart(document.getElementById('brand_chart_div'));
+      chart.draw(data, options);
+    }
+</script>
+
+
+<script type="text/javascript">
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Draw the chart and set the chart values
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable(<%=raw @data %>);
+      // Optional; add a title and set the width and height of the chart
+      var options = {'title':'All Brand Database', 'width':800, 'height':600};
+      // Display the chart inside the <div> element with id="chart_div"
+      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+</script>
+
+
+
+<div class="row">
+  <center><div id="chart_div"></div>
+</center>
+  
+</div>

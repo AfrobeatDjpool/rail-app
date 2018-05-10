@@ -39,7 +39,8 @@ class ImportWorker
             rent_data["date_of_db"] = row[15]       
 
             rents << rent_data
-            Rent.create!(rent_data)
+            rent = Rent.create!(rent_data)
+            # puts rent
           end
       }
         #remove first row with column name and make a new array with rents

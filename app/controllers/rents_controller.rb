@@ -29,7 +29,9 @@ class RentsController < ApplicationController
   # POST /rents.json
   def create
     if params[:file]
-      ImportJob.perform_later params[:file].path, current_user
+      # ImportJob.perform_later params[:file].path, current_user
+      ImportWorker.perform_async(params[:file].path, current_user)
+      
     end    
 
     respond_to do |format|

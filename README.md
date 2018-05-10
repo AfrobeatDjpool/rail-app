@@ -39,3 +39,8 @@ ssh ubuntu@54.244.68.241
 https://s3-us-west-2.amazonaws.com/cars-database/combined-rnv-files.csv
 
 rake import:rnv RAILS_ENV=production
+
+
+ssh ubuntu@34.214.46.126
+
+cat ~/.ssh/id_rsa.pub | ssh -i database.pem ubuntu@34.214.46.126 'cat >> .ssh/authorized_keys && echo "Key copied"'

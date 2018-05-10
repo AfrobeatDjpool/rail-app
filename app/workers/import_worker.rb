@@ -9,14 +9,15 @@ class ImportWorker
     time = Time.now.to_s(:db)
     require 'open-uri'
 
-      csv_text = open(path).read
+      # csv_text = open(path).read
       puts "========= File Read Out =========="
-      csv = CSV.parse(csv_text, :headers=>false, :encoding => 'ISO-8859-1')
-      # CSV.foreach(path, :headers => false, :encoding => 'ISO-8859-1').with_index { |row,index|
-      csv.with_index { |row,index|
+      # csv = CSV.parse(csv_text, :headers=>false, :encoding => 'ISO-8859-1')
+
+      CSV.foreach(open(path), :headers => false, :encoding => 'ISO-8859-1').with_index { |row,index|
+      # csv.with_index { |row,index|
         # ["user_id", "patente", "dv_patente", "marca", "modelo", "tipo", "fecha_ult_trans", "color", "resto_color", "ano_fab", "chasis", "numero_motor", "rut", "dv", "nombre", "multas","date_of_db","created_at","updated_at"]
           if index != 0
-            puts row
+            puts "Row: #{index}"
             # inserts.push "(#{current_user.try(:id)}, #{row[0]}, #{row[1]}, #{row[2]}, #{row[3]}, #{row[4]}, #{row[5]}, #{row[6]}, #{row[7]}, #{row[8]}, #{row[9]}, #{row[10]}, #{row[11]}, #{row[12]}, #{row[13]}, #{row[14]}, #{row[15]}, '#{time}', '#{time}')"
             rent_data = {}
             rent_data["user_id"] = current_user.try(:id)
@@ -38,12 +39,13 @@ class ImportWorker
             rent_data["date_of_db"] = row[15]       
 
             rents << rent_data
+            Rent.create!(rent_data)
           end
       }
         #remove first row with column name and make a new array with rents
       # rents = rents[1..rents.length]
 
-    Rent.import rents
+    # Rent.import rents
     # Rent.create!(rents)
 
       # @rent = Rent.create!(rents)

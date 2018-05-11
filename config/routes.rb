@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :padron_tests do
     collection do
-      get :chart
+      get :map
     end
   end
 

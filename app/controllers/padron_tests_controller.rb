@@ -6,4 +6,7 @@ class PadronTestsController < ApplicationController
       @padron_tests = PadronTest.paginate(:page => params[:page], :per_page => 30)
     end
   end
+
+  def map
+  end
 end

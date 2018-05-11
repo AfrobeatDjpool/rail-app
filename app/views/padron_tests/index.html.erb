@@ -1,0 +1,101 @@
+<center>
+  <%= form_tag(padron_tests_path, :method => "get", class: "form-inline") do %>
+  <div class="form-group mb-2">
+    <%= text_field_tag :name, params[:name], class: "form-control" , placeholder: "Search"%>
+  </div>
+  <div class="form-group mx-sm-3 mb-2">
+    <%= text_field_tag :brand, params[:brand], class: "form-control" , placeholder: "Brand"%>
+  </div>
+  <div class="form-group mx-sm-3 mb-2">
+    <%= text_field_tag :date_of_db, params[:date_of_db], class: "form-control" , placeholder: "Date of db"%>
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Search</button>
+<% end %>
+</center>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Wkb_geometry</th>
+      <th>circunscr</th>
+      <th>comuna</th>
+      <th>provincia</th>
+      <th>region</th>
+      <th>distrito</th>
+      <th>cirsen</th>
+      <th>sexo</th>
+      <th>sexo_mesa</th>
+      <th>rut</th>
+      <th>rut_tt</th>
+      <th>rut_1</th>
+      <th>dv</th>   
+      <th>nombres</th>
+      <th>fech_ins_m</th>
+      <th>nacionalid</th>
+      <th>giro</th>
+      <th>direccion</th>
+      <th>match</th>
+      <th>match_2</th>
+      <th>dir_ok</th>
+      <th>calle_ok</th>
+      <th>num_ok</th>
+      <th>direcc_ok</th>
+      <th>gse</th>
+      <th>x</th>
+      <th>y</th>
+      <th>tipo</th>
+      <th>telefono</th>
+      <th>email</th>
+      <th>cruce</th>
+      <th>rutt</th>    
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @padron_tests.each do |padron_test| %>
+      <tr>
+        <td><%= padron_test.wkb_geometry %></td>
+        <td><%= padron_test.circunscr %></td>
+        <td><%= padron_test.comuna %></td>
+        <td><%= padron_test.provincia %></td>
+        <td><%= padron_test.region %></td>
+        <td><%= padron_test.distrito %></td>
+        <td><%= padron_test.cirsen %></td>
+        <td><%= padron_test.sexo %></td>
+        <td><%= padron_test.sexo_mesa %></td>
+        <td><%= padron_test.rut %></td>
+        <td><%= padron_test.rut_tt %></td>
+        <td><%= padron_test.rut_1 %></td>
+        <td><%= padron_test.dv %></td>
+        <td><%= padron_test.nombres %></td>
+        <td><%= padron_test.fech_ins_m %></td>
+        <td><%= padron_test.nacionalid %></td>
+        <td><%= padron_test.giro %></td>
+        <td><%= padron_test.direccion %></td> 
+        <td><%= padron_test.match %></td>         
+        <td><%= padron_test.match_2 %></td> 
+        <td><%= padron_test.dir_ok %></td> 
+        <td><%= padron_test.calle_ok %></td> 
+        <td><%= padron_test.num_ok %></td> 
+        <td><%= padron_test.direcc_ok %></td> 
+        <td><%= padron_test.gse %></td> 
+        <td><%= padron_test.x %></td> 
+        <td><%= padron_test.y %></td> 
+        <td><%= padron_test.tipo %></td> 
+        <td><%= padron_test.telefono %></td> 
+        <td><%= padron_test.email %></td> 
+        <td><%= padron_test.cruce %></td> 
+        <td><%= padron_test.rutt %></td> 
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @padron_tests %>
+    </div>
+    <%= will_paginate @padron_tests, :container => false %>
+  </div>
+
+<br>
+

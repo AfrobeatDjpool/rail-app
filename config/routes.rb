@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root  'rents#index'
@@ -7,6 +8,12 @@ Rails.application.routes.draw do
     mount Sidekiq::Web, at: '/sidekiq'
 
   resources :rents do
+    collection do
+      get :chart
+    end
+  end
+
+  resources :padron_tests do
     collection do
       get :chart
     end

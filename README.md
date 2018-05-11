@@ -29,6 +29,9 @@ redis-server
 ##clear rediscache
 redis-cli flushall
 
+#
+ps -ef | grep sidekiq
+
 ## To Start Sidekiq in production env
 bundle exec sidekiq -d -L sidekiq.log -q mailer,5 -q default -e production
 * ...
@@ -43,4 +46,7 @@ rake import:rnv RAILS_ENV=production
 
 ssh ubuntu@34.214.46.126
 
+ogr2ogr -f "PostgreSQL" PG:"host=localhost dbname=geodb user=root password=root" "padron_test.gdb"
+
+ogr2ogr -f "PostgreSQL" PG:"host=localhost port=5432 dbname=geodb user=root password=root" padron_test.gdb -overwrite -progress --config PG_USE_COPY YES
 cat ~/.ssh/id_rsa.pub | ssh -i database.pem ubuntu@34.214.46.126 'cat >> .ssh/authorized_keys && echo "Key copied"'

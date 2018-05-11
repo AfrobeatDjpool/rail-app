@@ -16,7 +16,7 @@ class ImportWorker
       CSV.foreach(open(path), :headers => false, :encoding => 'ISO-8859-1').with_index { |row,index|
       # csv.with_index { |row,index|
         # ["user_id", "patente", "dv_patente", "marca", "modelo", "tipo", "fecha_ult_trans", "color", "resto_color", "ano_fab", "chasis", "numero_motor", "rut", "dv", "nombre", "multas","date_of_db","created_at","updated_at"]
-          if index > 1589399
+          if index > 3297010 #1589399 - 1609438
             puts "Row: #{index}"
             # inserts.push "(#{current_user.try(:id)}, #{row[0]}, #{row[1]}, #{row[2]}, #{row[3]}, #{row[4]}, #{row[5]}, #{row[6]}, #{row[7]}, #{row[8]}, #{row[9]}, #{row[10]}, #{row[11]}, #{row[12]}, #{row[13]}, #{row[14]}, #{row[15]}, '#{time}', '#{time}')"
             rent_data = {}

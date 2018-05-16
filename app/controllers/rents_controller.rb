@@ -30,7 +30,7 @@ class RentsController < ApplicationController
   def create
     if params[:file]
       # ImportJob.perform_later params[:file].path, current_user
-      ImportWorker.perform_async(params[:file], current_user)
+      ImportWorker.perform_async(params[:file].path, current_user)
       
     end    
 

@@ -1,2 +1,2 @@
-json.extract! rent, :id, :user_id, :rut, :dv, :first_name, :cod_act, :email, :rank, :date_act, :origin, :created_at, :updated_at
+json.extract! rent, :id, :user_id, :patente, :dv_patente, :brand, :model, :tipo, :date_ult_trans, :color, :rest_color, :ano_fab, :rut, :chasis, :numero_motor, :dv, :first_name, :fines, :date_of_db
 json.url rent_url(rent, format: :json)

@@ -44,9 +44,21 @@ https://s3-us-west-2.amazonaws.com/cars-database/combined-rnv-files.csv
 rake import:rnv RAILS_ENV=production
 
 
-ssh ubuntu@34.214.46.126
+ssh ubuntu@34.216.151.99
 
-ogr2ogr -f "PostgreSQL" PG:"host=localhost dbname=geodb user=root password=root" "padron_test.gdb"
+ogr2ogr -f "PostgreSQL" PG:"host=34.216.151.99 dbname=combiled_rnv_prod user=root password=root" "padron.gdb"
 
-ogr2ogr -f "PostgreSQL" PG:"host=localhost port=5432 dbname=geodb user=root password=root" padron_test.gdb -overwrite -progress --config PG_USE_COPY YES
+ogr2ogr -f "PostgreSQL" PG:"host=localhost port=5432 dbname=combiled_rnv user=root password=root" padron_test.gdb -overwrite -progress --config PG_USE_COPY YES
+
 cat ~/.ssh/id_rsa.pub | ssh -i database.pem ubuntu@34.214.46.126 'cat >> .ssh/authorized_keys && echo "Key copied"'
+
+
+sudo apt-get install libgdal-dev
+
+
+
+
+/dev/sda1
+us-west-2a
+
+psql -h 34.216.151.99 -U root combiled_rnv_prod

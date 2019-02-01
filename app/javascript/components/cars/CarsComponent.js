@@ -14,7 +14,7 @@ class CarsComponent extends React.Component {
       <table className="table">
 		    <thead>
 		      <tr>
-		        <th>Patente</th>
+		        <th>ddddddddddddddddddddd</th>
             <th>Dv_patente</th>
             <th>Brand</th>
             <th>Model</th>

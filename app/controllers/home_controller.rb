@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!
   def index
-  	@cars = Rent.paginate(:page => params[:page], :per_page => 15)
-
+  	@users = User.all.paginate(:page => params[:page], :per_page => 30)
   end
 end

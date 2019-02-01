@@ -1,7 +1,8 @@
-<%= react_component('cars/CarsComponent', {cars: @cars}) %>
+<%#= react_component('cars/CarsComponent', {cars: @users}) %>
+<%= react_component('users/UsersComponent', {users: @users}) %>
 <div class="digg_pagination">
 <div class="page_info">
-  <%= page_entries_info @cars %>
+  <%= page_entries_info @users %>
 </div>
-<%= will_paginate @cars, :container => false %>
+<%= will_paginate @users, :container => false %>
 </div>

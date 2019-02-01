@@ -61,3 +61,14 @@ gem 'sidekiq'
 # gem 'nypl-warper'
 gem 'webpacker', '~> 3.5'
 gem 'react-rails'
+gem 'jquery-rails'
+gem "letter_opener", :group => :development
+gem 'omniauth-facebook', '~> 5.0.0'
+gem 'omniauth-twitter', '~> 1.4.0'
+gem 'omniauth-linkedin'
+gem "omniauth-google-oauth2"
+
+
+gem 'will_paginate', '~> 3.1.0'
+gem 'react-rails'
+gem 'apipie-rails'

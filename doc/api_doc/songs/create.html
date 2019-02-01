@@ -1,0 +1,86 @@
+api :POST, '/api/v1/songs'
+error 401, "Unauthorized"
+error 404, "Page not found"
+error 403, "Something went wrong"
+error 500, "Internal Server Error"
+
+example <<-TEXT
+
+Songs Create API
+
+TEXT
+
+example <<-TEXT
+
+Api Details:
+---------------------------------------
+  {
+    api_name: songs,
+    method: POST,
+    version: v1,
+    path: /api/v1/songs,
+    host: example.com
+  }
+
+TEXT
+
+example <<-TEXT
+
+Header Body:
+---------------------------------------
+  {
+    Content-Type: application/json
+    User-Token:   pZnGtofwatRe2G9DbRy3
+  }
+
+TEXT
+
+example <<-TEXT
+
+Request Body:
+---------------------------------------
+  { "admin_song":
+   {
+    "name_song": "hdfcccclf"  
+   }
+  }
+
+TEXT
+
+example <<-TEXT
+
+Response Body:
+---------------------------------------
+
+
+    {
+    "status": 200,
+    "data": {
+        "song": {
+            "id": 8,
+            "user_id": 3,
+            "name_song": "hdfcccclf",
+            "beats": null,
+            "genre": null,
+            "version": null,
+            "name_artist": null,
+            "date_uploaded": null,
+            "created_at": "2019-01-30T11:59:51.657Z",
+            "updated_at": "2019-01-30T11:59:51.657Z"
+        }
+    },
+    "message": "Successfuly Create Song"
+    }
+
+
+TEXT
+
+example <<-TEXT
+
+ 
+
+
+
+TEXT
+
+

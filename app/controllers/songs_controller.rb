@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   def index
   	@songs = Song.all.paginate(:page => params[:page], :per_page => 30)
   end

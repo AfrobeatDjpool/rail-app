@@ -1,5 +1,5 @@
 class Api::V1::RegistrationsController < Api::V1::ApiController
-  skip_before_action  :verify_authenticity_token 
+  # skip_before_action  :verify_authenticity_token 
    # skip_before_action :authenticate_user!, only: [:create, :resset_password]
 
 	def create

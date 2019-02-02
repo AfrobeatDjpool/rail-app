@@ -1,5 +1,5 @@
 class Api::V1::SessionsController < Api::V1::ApiController
-  skip_before_action  :verify_authenticity_token 
+  # skip_before_action  :verify_authenticity_token 
   # before_action :authenticate_user!, only: [:destroy]
   before_action :authenticate_user!, except: [:create, :facebook_login]
   # ====================Sign IN====================================

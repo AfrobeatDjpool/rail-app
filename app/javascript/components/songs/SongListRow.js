@@ -17,6 +17,8 @@ class SongListRow extends React.Component {
         <td>{this.props.version}</td>
         <td>{this.props.name_artist}</td>
         <td>{this.props.date_uploaded}</td>
+        <td><a href={`/songs/${this.props.id}`}>Edit</a></td>
+        <td><a href={`/songs/${this.props.id}`}>Show</a> </td> 
 
       </tr>
     );

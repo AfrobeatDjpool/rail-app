@@ -1,0 +1,147 @@
+api :POST, '/api/v1/facebook_login', "Facebook Login"
+error 401, "Unauthorized"
+error 404, "Page not found"
+error 403, "Something went wrong"
+error 500, "Internal Server Error"
+
+example <<-TEXT
+
+Facebook Login API
+
+TEXT
+
+example <<-TEXT
+
+Api Details:
+---------------------------------------
+  {
+    api_name: Facebook Login,
+    method: POST,
+    version: v1,
+    path: /api/v1/facebook_login,
+    host: http://52.37.181.183
+  }
+
+TEXT
+
+example <<-TEXT
+
+Header Body:
+---------------------------------------
+  {
+    Content-Type: application/json
+  }
+
+TEXT
+
+example <<-TEXT
+
+Request Body:
+---------------------------------------
+  {
+    "provider":"facebook", or, "provider":"twitter"
+    "email": "shikha@bittern.co",
+    "password": "shikha@98",
+    "token": "fvgdfgf",
+    "uid":"fsffdf"
+  }
+
+
+TEXT
+
+example <<-TEXT
+
+Guideline for Add to Watch Later
+
+1- access_token should be the correct, valid token provide by facebook
+2- provider must be facebook
+
+TEXT
+
+example <<-TEXT
+
+Response Body:
+---------------------------------------
+ 
+{
+    "status": 200,
+    "user": {
+        "id": 4,
+        "email": "abcdf@facebook.com",
+        "created_at": "2019-01-29T08:39:31.421Z",
+        "updated_at": "2019-01-29T08:39:31.421Z",
+        "authentication_token": "g21NyhntY7KzFEhBA9fX",
+        "first_name": null,
+        "second_name": null,
+        "name_label": null,
+        "country": null,
+        "state": null,
+        "facebook_url": null,
+        "instagram_url": null,
+        "twitter_url": null,
+        "name_club": null,
+        "role": null,
+        "authentication": [
+            {
+                "id": 2,
+                "provider": "facebook",
+                "uid": null,
+                "user_id": 4,
+                "token": null,
+                "created_at": "2019-01-29T08:39:31.494Z",
+                "updated_at": "2019-01-29T08:39:31.494Z"
+            }
+        ]
+    },
+    "message": "Login Successful"
+}
+TEXT
+
+example <<-TEXT
+
+Unauthorized:
+====================================================================================
+
+  Bellow response you will get when your access_token is not correct
+
+   	{
+	   	"error":
+	   		{
+	   			"message":"Invalid OAuth access token.",
+	   			"type":"OAuthException",
+	   			"code":190,
+	   			"fbtrace_id":"FAyPHrTtHaT"
+	 			}
+		}
+
+
+TEXT
+
+example <<-TEXT
+
+Required Parameters
+======================================================================================
+
+access_token: required
+provider: required
+
+
+TEXT
+
+example <<-TEXT
+
+Required Header
+======================================================================================
+
+Content-Type: required
+
+TEXT
+
+example <<-TEXT
+
+Summery:
+=====================================================================================
+
+
+
+TEXT

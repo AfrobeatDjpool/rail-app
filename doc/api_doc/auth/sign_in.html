@@ -1,0 +1,120 @@
+api :POST, '/api/v1/sign_in', "Sign In"
+error 401, "Unauthorized"
+error 404, "Page not found"
+error 403, "Something went wrong"
+error 500, "Internal Server Error"
+
+example <<-TEXT
+
+Sign In API
+
+TEXT
+
+example <<-TEXT
+
+Api Details:
+---------------------------------------
+  {
+    api_name: sign in,
+    method: POST,
+    version: v1,
+    path: /api/v1/sign_in,
+    host: example.com
+  }
+
+TEXT
+
+example <<-TEXT
+
+Header Body:
+---------------------------------------
+  {
+    Content-Type: application/json
+  }
+
+TEXT
+
+example <<-TEXT
+
+Request Body:
+---------------------------------------
+  { 
+  "user" :{
+  "email":"test@gmail.com",
+  "password" :"12345678"
+  }
+}
+
+TEXT
+
+example <<-TEXT
+
+Response Body:
+---------------------------------------
+
+    {
+    "status": 200,
+    "data": {
+        "user": {
+            "id": 12,
+            "email": "test@gmail.com",
+            "created_at": "2019-01-30T05:57:12.770Z",
+            "updated_at": "2019-01-30T06:43:52.196Z",
+            "authentication_token": "DY-zQxdVzXUP_j2rg-ex",
+            "first_name": null,
+            "second_name": null,
+            "name_label": null,
+            "country": null,
+            "state": null,
+            "facebook_url": null,
+            "instagram_url": null,
+            "twitter_url": null,
+            "name_club": null,
+            "role": "admin"
+        }
+    },
+    "message": "Login Successful"
+
+TEXT
+
+example <<-TEXT
+
+Unauthorized:
+====================================================================================
+
+  Bellow response you will get when you type incorrect email or password
+
+    {
+        "status": 401,
+        "data":
+        {
+            "user": null
+        },
+        "message": "Invalid username or password"
+    }
+
+
+TEXT
+
+example <<-TEXT
+
+Required Parameters
+======================================================================================
+
+email: required
+password: required
+
+TEXT
+
+example <<-TEXT
+
+Required Header
+======================================================================================
+
+Content-Type: required
+
+TEXT
+
+example <<-TEXT
+
+TEXT

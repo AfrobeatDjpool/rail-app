@@ -1,0 +1,316 @@
+api :GET, '/api/v1/users'
+error 401, "Unauthorized"
+error 404, "Page not found"
+error 403, "Something went wrong"
+error 500, "Internal Server Error"
+
+example <<-TEXT
+
+Users Index API
+
+TEXT
+
+example <<-TEXT
+
+Api Details:
+---------------------------------------
+  {
+    api_name: users,
+    method: GET,
+    version: v1,
+    path: /api/v1/users,
+    host: example.com
+  }
+
+TEXT
+
+example <<-TEXT
+
+Header Body:
+---------------------------------------
+  {
+    Content-Type: application/json,
+    User-Token:  pZnGtofwatRe2G9DbRy3
+  }
+
+TEXT
+
+example <<-TEXT
+
+Request Body:
+---------------------------------------
+
+TEXT
+
+example <<-TEXT
+
+Response Body:
+---------------------------------------
+{
+    "status": 200,
+    "data": {
+        "user": [
+            {
+                "id": 3,
+                "email": "657004911364668@facebook.com",
+                "created_at": "2019-01-29T07:24:31.453Z",
+                "updated_at": "2019-01-29T07:24:31.453Z",
+                "authentication_token": "pZnGtofwatRe2G9DbRy3",
+                "first_name": null,
+                "second_name": null,
+                "name_label": null,
+                "country": null,
+                "state": null,
+                "facebook_url": null,
+                "instagram_url": null,
+                "twitter_url": null,
+                "name_club": null,
+                "role": null,
+                "zip_code": null,
+                "city": null
+            },
+            {
+                "id": 4,
+                "email": "@facebook.com",
+                "created_at": "2019-01-29T08:39:31.421Z",
+                "updated_at": "2019-01-29T08:39:31.421Z",
+                "authentication_token": "g21NyhntY7KzFEhBA9fX",
+                "first_name": null,
+                "second_name": null,
+                "name_label": null,
+                "country": null,
+                "state": null,
+                "facebook_url": null,
+                "instagram_url": null,
+                "twitter_url": null,
+                "name_club": null,
+                "role": null,
+                "zip_code": null,
+                "city": null
+            },
+            {
+                "id": 2,
+                "email": "testing.bittern@gmail.com",
+                "created_at": "2019-01-29T07:21:20.292Z",
+                "updated_at": "2019-01-29T08:47:02.201Z",
+                "authentication_token": "1GThssv29ht95U4qTH8s",
+                "first_name": null,
+                "second_name": null,
+                "name_label": null,
+                "country": null,
+                "state": null,
+                "facebook_url": null,
+                "instagram_url": null,
+                "twitter_url": null,
+                "name_club": null,
+                "role": null,
+                "zip_code": null,
+                "city": null
+            },
+            {
+                "id": 5,
+                "email": "shikha@bittern.co",
+                "created_at": "2019-01-29T13:12:50.190Z",
+                "updated_at": "2019-01-29T13:12:50.190Z",
+                "authentication_token": "sWZVRbxyUFfPCMTfddHa",
+                "first_name": null,
+                "second_name": null,
+                "name_label": null,
+                "country": null,
+                "state": null,
+                "facebook_url": null,
+                "instagram_url": null,
+                "twitter_url": null,
+                "name_club": null,
+                "role": null,
+                "zip_code": null,
+                "city": null
+            },
+            {
+                "id": 6,
+                "email": "shikha@bittern.com",
+                "created_at": "2019-01-29T13:14:55.581Z",
+                "updated_at": "2019-01-29T13:14:55.581Z",
+                "authentication_token": "qzj-vYxt1xoZ1V-oYMFW",
+                "first_name": null,
+                "second_name": null,
+                "name_label": null,
+                "country": null,
+                "state": null,
+                "facebook_url": null,
+                "instagram_url": null,
+                "twitter_url": null,
+                "name_club": null,
+                "role": null,
+                "zip_code": null,
+                "city": null
+            },
+            {
+                "id": 7,
+                "email": "shikhapandey@bittern.co",
+                "created_at": "2019-01-29T14:03:40.026Z",
+                "updated_at": "2019-01-29T14:03:40.026Z",
+                "authentication_token": "_Fy4X7AZnm8nxQWzjosx",
+                "first_name": "shikha",
+                "second_name": null,
+                "name_label": null,
+                "country": null,
+                "state": null,
+                "facebook_url": null,
+                "instagram_url": null,
+                "twitter_url": null,
+                "name_club": null,
+                "role": null,
+                "zip_code": null,
+                "city": null
+            },
+            {
+                "id": 8,
+                "email": "test@bittern.co",
+                "created_at": "2019-01-30T04:56:38.869Z",
+                "updated_at": "2019-01-30T04:56:38.869Z",
+                "authentication_token": "LyMDw2A1nePpsWKCRTCy",
+                "first_name": "testing",
+                "second_name": null,
+                "name_label": null,
+                "country": null,
+                "state": null,
+                "facebook_url": null,
+                "instagram_url": null,
+                "twitter_url": null,
+                "name_club": null,
+                "role": null,
+                "zip_code": null,
+                "city": null
+            },
+            {
+                "id": 9,
+                "email": "testing@bittern.co",
+                "created_at": "2019-01-30T04:57:22.481Z",
+                "updated_at": "2019-01-30T04:57:22.481Z",
+                "authentication_token": "-uA2AHcvyMSZ-f3vjMEN",
+                "first_name": "testing",
+                "second_name": null,
+                "name_label": null,
+                "country": null,
+                "state": null,
+                "facebook_url": null,
+                "instagram_url": null,
+                "twitter_url": null,
+                "name_club": null,
+                "role": null,
+                "zip_code": null,
+                "city": null
+            },
+            {
+                "id": 10,
+                "email": "testinguser@bittern.co",
+                "created_at": "2019-01-30T05:03:14.032Z",
+                "updated_at": "2019-01-30T05:03:14.032Z",
+                "authentication_token": "FehTR9giNPsLD2jHRxWR",
+                "first_name": "testing",
+                "second_name": null,
+                "name_label": null,
+                "country": null,
+                "state": null,
+                "facebook_url": null,
+                "instagram_url": null,
+                "twitter_url": null,
+                "name_club": null,
+                "role": null,
+                "zip_code": null,
+                "city": null
+            },
+            {
+                "id": 11,
+                "email": "testinguser2@bittern.co",
+                "created_at": "2019-01-30T05:05:20.107Z",
+                "updated_at": "2019-01-30T05:05:20.107Z",
+                "authentication_token": "uNs4eqfZ8w3iCyiGphJ1",
+                "first_name": "testing",
+                "second_name": null,
+                "name_label": null,
+                "country": null,
+                "state": null,
+                "facebook_url": null,
+                "instagram_url": null,
+                "twitter_url": null,
+                "name_club": null,
+                "role": null,
+                "zip_code": null,
+                "city": null
+            },
+            {
+                "id": 1,
+                "email": "test4@test.com",
+                "created_at": "2019-01-29T05:13:07.357Z",
+                "updated_at": "2019-01-30T12:10:17.416Z",
+                "authentication_token": "GcE2-wfvyH2AsvnAgFsx",
+                "first_name": null,
+                "second_name": null,
+                "name_label": null,
+                "country": null,
+                "state": null,
+                "facebook_url": null,
+                "instagram_url": null,
+                "twitter_url": null,
+                "name_club": null,
+                "role": null,
+                "zip_code": null,
+                "city": null
+            },
+            {
+                "id": 13,
+                "email": "test_user12@test.com",
+                "created_at": "2019-01-30T12:15:05.291Z",
+                "updated_at": "2019-01-30T12:15:05.291Z",
+                "authentication_token": "ccke_ryPK7JCU-gNXUM8",
+                "first_name": null,
+                "second_name": null,
+                "name_label": null,
+                "country": null,
+                "state": null,
+                "facebook_url": null,
+                "instagram_url": null,
+                "twitter_url": null,
+                "name_club": null,
+                "role": null,
+                "zip_code": null,
+                "city": null
+            },
+            {
+                "id": 12,
+                "email": "test@gmail.com",
+                "created_at": "2019-01-30T05:57:12.770Z",
+                "updated_at": "2019-01-30T14:32:27.892Z",
+                "authentication_token": "DY-zQxdVzXUP_j2rg-ex",
+                "first_name": "fdgfdg",
+                "second_name": "tester",
+                "name_label": "tester",
+                "country": "dfgdg",
+                "state": "dfgdg",
+                "facebook_url": "tester",
+                "instagram_url": null,
+                "twitter_url": "tester",
+                "name_club": null,
+                "role": "user",
+                "zip_code": null,
+                "city": null
+            }
+        ]
+    },
+    "message": "Successfuly Listed Users"
+}
+
+
+TEXT
+
+example <<-TEXT
+
+ 
+
+
+
+TEXT
+
+

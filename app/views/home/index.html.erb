@@ -1,5 +1,8 @@
-<div class="btn-group" role="group" aria-label="Basic example">
-  <a href="/rents" class="btn btn-primary">RNV</a>
-  <!-- <a href="" class="btn btn-primary">Web</a> -->
-  <!-- <a href="" class="btn btn-primary">GIS DATA</a> -->
+<%#= react_component('cars/CarsComponent', {cars: @users}) %>
+<%= react_component('users/UsersComponent', {users: @users}) %>
+<div class="digg_pagination">
+<div class="page_info">
+  <%= page_entries_info @users %>
+</div>
+<%= will_paginate @users, :container => false %>
 </div>

@@ -1,23 +1,49 @@
 Rails.application.routes.draw do
-
+  resources :songs
+  get '/mysong', to: 'songs#mysong'
+  namespace :admin do
+    resources :songs
+  end
+  namespace :api do
+    namespace :v1 do
+      get 'sessions/create'
+      get 'sessions/destroy'
+    end
+  end
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root  'rents#index'
+  root 'home#index'
 
-  require 'sidekiq/web'
-    mount Sidekiq::Web, at: '/sidekiq'
+  namespace :api do
+	  namespace :v1 do
+	  	resources :users, only: [:index] 
 
-  resources :rents do
-    collection do
-      get :chart
+      post "/sign_in", :to => 'sessions#create'
+      delete "/sign_out", :to => 'sessions#destroy'
+      get "/profile", :to => 'registrations#profile'
+      post "/profile", :to => 'registrations#profile'
+      post "/sign_up", :to => 'registrations#create'
+      post"/facebook_login", :to => 'sessions#facebook_login'
+      post "/update_account", :to => 'registrations#update'
+      get "/reset_password", :to => 'registrations#reset_password'
+      post "/reset_password", :to => 'registrations#reset_password'
+      resources :songs
+      get '/mysongs', to: 'songs#mysongs'
+      get '/download_section', to: 'songs#download_section'
+	  end
+	end
+
+  # Admin dashboard
+  namespace :admin do    
+    resources :users do
+    resources :songs
     end
+    resources :analytics
   end
+  apipie
 
-  resources :padron_tests do
-    collection do
-      get :map
-    end
-  end
-
+  #Callback
+  match '/auth/:provider/callback', :to => 'sessions#create', via: [:get, :post]
+  match '/auth/failure', :to => 'sessions#failure', via: [:get, :post]
 
 end

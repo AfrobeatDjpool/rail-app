@@ -20,45 +20,58 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+
 * ...
-##To Update cron
-bundle exec whenever --update-crontab
 
-## To start Redis
-redis-server
-##clear rediscache
-redis-cli flushall
-
-#
-ps -ef | grep sidekiq
-
-## To Start Sidekiq in production env
-bundle exec sidekiq -d -L sidekiq.log -q mailer,5 -q default -e production
-* ...
-https://www.dropbox.com/sh/isay8r4vxnccowt/AAA5Fq9wfxiKWfVWBOJOOA-La?dl=0
-https://drive.google.com/uc?id=1uoz7s_nHJXFasaqqNoJblx051FPjiiIE&export=download
-ssh ubuntu@54.244.68.241
-
-https://s3-us-west-2.amazonaws.com/cars-database/combined-rnv-files.csv
-
-rake import:rnv RAILS_ENV=production
+<!-- songs_create
+ Api Details:
+ example <<-TEXT
+ ---------------------------------------
+     {
+    api_name: songs,
+    method: POST,
+    version: v1,
+    path: /api/v1/songs
+  }
 
 
-ssh ubuntu@34.216.151.99
+  Header Body:
+  example <<-TEXT
+---------------------------------------
+  {
+    Content-Type: application/json
+    User-Token:   pZnGtofwatRe2G9DbRy3
+  }
 
-ogr2ogr -f "PostgreSQL" PG:"host=34.216.151.99 dbname=combiled_rnv_prod user=root password=root" "padron.gdb"
+  Request Body:
+  example <<-TEXT
+---------------------------------------
+{ "admin_song":
+  {
+    "name_song": "hdfcccclf"  
+  }
+}
 
-ogr2ogr -f "PostgreSQL" PG:"host=localhost port=5432 dbname=combiled_rnv user=root password=root" padron_test.gdb -overwrite -progress --config PG_USE_COPY YES
+ Response Body:
+ example <<-TEXT
+---------------------------------------
+{
+    "status": 200,
+    "data": {
+        "song": {
+            "id": 8,
+            "user_id": 3,
+            "name_song": "hdfcccclf",
+            "beats": null,
+            "genre": null,
+            "version": null,
+            "name_artist": null,
+            "date_uploaded": null,
+            "created_at": "2019-01-30T11:59:51.657Z",
+            "updated_at": "2019-01-30T11:59:51.657Z"
+        }
+    },
+    "message": "Successfuly Create Song"
+}
 
-cat ~/.ssh/id_rsa.pub | ssh -i database.pem ubuntu@34.214.46.126 'cat >> .ssh/authorized_keys && echo "Key copied"'
-
-
-sudo apt-get install libgdal-dev
-
-
-
-
-/dev/sda1
-us-west-2a
-
-psql -h 34.216.151.99 -U root combiled_rnv_prod
+  

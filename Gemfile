@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -58,3 +59,7 @@ gem 'jquery-rails'
 gem 'will_paginate', '~> 3.1.0'
 gem 'activerecord-import'
 gem 'sidekiq'
+
+gem 'sinatra'
+gem 'rack-parser'
+

@@ -1,6 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import SongListRow from './SongListRow';
+import SongForm from './SongForm'
+import axios from 'axios'
 
 class SongsComponent extends React.Component {
 	constructor(props) {
@@ -9,7 +11,10 @@ class SongsComponent extends React.Component {
 
   render () {
   	const songs = this.props.songs;
+    const current_user = this.props.current_user;
     return (
+      <div>
+      <SongForm current_user={current_user}/>
 
       <table className="table">
 		    <thead>
@@ -40,6 +45,7 @@ class SongsComponent extends React.Component {
           ))}
 		    </tbody>
 		  </table>
+      </div>
     );
   }
 }

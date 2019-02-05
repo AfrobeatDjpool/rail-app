@@ -8,6 +8,8 @@ class Api::V1::SongsController < Api::V1::ApiController
   def index
     @songs = Song.all
     render json: {status: 200, data: { :songs => @songs.as_json}, :message =>"Successfuly Show Song"}
+    # @songs = Song.order("created_at DESC")
+    # render json: @songs
   end
 
   eval(IO.read('doc/api_doc/songs/mysong.html'), binding)
@@ -63,7 +65,7 @@ class Api::V1::SongsController < Api::V1::ApiController
   eval(IO.read('doc/api_doc/songs/create.html'), binding) 
 
   def create
-    if current_user.role == "admin"
+    # if current_user.role == "admin"
       user = current_user.first_name
       song = current_user.songs.new(admin_song_params)
       # song.user_id = current_user.try(:id)
@@ -74,9 +76,9 @@ class Api::V1::SongsController < Api::V1::ApiController
         warden.custom_failure!
         return render json: {status: 401, data: {song: nil, errors: song.errors}, :message =>"Song Rollback"} 
       end
-    else
-      return render json: {status: 401,  :message =>"You are Not Admin"}
-    end  
+    # else
+    #   return render json: {status: 401,  :message =>"You are Not Admin"}
+    # end  
   end
 
   eval(IO.read('doc/api_doc/songs/update.html'), binding)
@@ -100,7 +102,7 @@ class Api::V1::SongsController < Api::V1::ApiController
 
 	    # Never trust parameters from the scary internet, only allow the white list through.
 	    def admin_song_params
-	      params.require(:admin_song).permit(:user_id, :name_song, :beats, :genre, :version, :name_artist, :date_upload)
+	      params.require(:admin_song).permit(:user_id, :name_song, :beats, :genre, :version, :name_artist, :date_uploaded)
 	    end
   
 

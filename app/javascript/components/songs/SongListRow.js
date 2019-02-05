@@ -10,7 +10,8 @@ class SongListRow extends React.Component {
     
     return (
       <tr>
-        <td>{this.props.id}</td>
+        
+        <td>{this.props.index}</td>
         <td>{this.props.name_song}</td>
         <td>{this.props.beats}</td>
         <td>{this.props.genre}</td>

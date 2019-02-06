@@ -1,0 +1,12 @@
+<%= react_component('songs/SongsComponent', {songs: @songs}) %>
+<div class="digg_pagination">
+<div class="page_info">
+  <%= page_entries_info @songs %>
+</div>
+<%= will_paginate @songs, :container => false %>
+</div>
+
+<%# @songs.each_with_index do |song| %>
+	<%#= song.name_song %>
+	<%#= link_to 'Show', song %>	
+<%#end %>

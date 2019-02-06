@@ -10,52 +10,72 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180507143516) do
+ActiveRecord::Schema.define(version: 20190201062841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "rents", force: :cascade do |t|
+  create_table "admin_songs", force: :cascade do |t|
     t.integer "user_id"
-    t.string "patente"
-    t.string "dv_patente"
-    t.string "brand"
-    t.string "model"
-    t.string "tipo"
-    t.datetime "date_ult_trans"
-    t.string "color"
-    t.string "rest_color"
-    t.integer "ano_fab"
-    t.string "chasis"
-    t.string "numero_motor"
-    t.integer "rut"
-    t.string "dv"
-    t.string "first_name"
-    t.integer "cod_act"
-    t.string "email"
-    t.integer "rank"
-    t.datetime "date_act"
-    t.string "origin"
-    t.boolean "fines"
+    t.string "name_song"
+    t.string "beats"
+    t.string "genre"
+    t.string "version"
+    t.string "name_artist"
+    t.date "date_upload"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "date_of_db"
+  end
+
+  create_table "authentications", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.integer "user_id"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "downloads", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "song_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name_song"
+    t.string "beats"
+    t.string "genre"
+    t.string "version"
+    t.string "name_artist"
+    t.string "date_uploaded"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
-    t.string "role", default: "normal"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "authentication_token"
+    t.string "first_name"
+    t.string "second_name"
+    t.string "name_label"
+    t.string "country"
+    t.string "state"
+    t.string "facebook_url"
+    t.string "instagram_url"
+    t.string "twitter_url"
+    t.string "name_club"
+    t.string "role"
+    t.integer "zip_code"
+    t.string "city"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

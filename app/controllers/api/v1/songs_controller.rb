@@ -65,7 +65,7 @@ class Api::V1::SongsController < Api::V1::ApiController
   eval(IO.read('doc/api_doc/songs/create.html'), binding) 
 
   def create
-    # if current_user.role == "admin"
+    if current_user.role == "admin"
       user = current_user.first_name
       song = current_user.songs.new(admin_song_params)
       # song.user_id = current_user.try(:id)
@@ -76,9 +76,9 @@ class Api::V1::SongsController < Api::V1::ApiController
         warden.custom_failure!
         return render json: {status: 401, data: {song: nil, errors: song.errors}, :message =>"Song Rollback"} 
       end
-    # else
-    #   return render json: {status: 401,  :message =>"You are Not Admin"}
-    # end  
+    else
+       return render json: {status: 401,  :message =>"You are Not Admin"}
+    end  
   end
 
   eval(IO.read('doc/api_doc/songs/update.html'), binding)

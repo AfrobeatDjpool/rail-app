@@ -34,7 +34,7 @@ class SongsComponent extends React.Component {
 		      {songs.map((song, index) => (
             <SongListRow
               key={index}
-              id={song.id}
+              index={index}
               name_song={song.name_song}
               beats={song.beats} 
               genre={song.genre}

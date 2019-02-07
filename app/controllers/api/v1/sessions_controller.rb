@@ -27,6 +27,9 @@ class Api::V1::SessionsController < Api::V1::ApiController
   end
   
    eval(IO.read('doc/api_doc/auth/facebook_login.html'), binding)
+   eval(IO.read('doc/api_doc/auth/twitter_login.html'), binding)
+   eval(IO.read('doc/api_doc/auth/google_login.html'), binding)
+
   def facebook_login  
     return render json: {status:401, message: "Provider required"} if params[:provider].blank?
     return render json: {status:401, message: "OAuth access token required"} if params[:token].blank?

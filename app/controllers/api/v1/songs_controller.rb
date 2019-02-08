@@ -1,8 +1,27 @@
 class Api::V1::SongsController < Api::V1::ApiController
 	# skip_before_action  :verify_authenticity_token 
   # before_action :authenticate_user!, only: [:destroy]
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 	
+  eval(IO.read('doc/api_doc/songs/create.html'), binding) 
+
+  def create
+    if current_user.role == "admin"
+      user = current_user.first_name
+      song = current_user.songs.new(admin_song_params)
+      # song.user_id = current_user.try(:id)
+       if song.save
+     
+        return render json: {status: 200, data: {song: song, user: user}, :message =>"Successfuly Create Song"} 
+      else
+        warden.custom_failure!
+        return render json: {status: 401, data: {song: nil, errors: song.errors}, :message =>"Song Rollback"} 
+      end
+    else
+       return render json: {status: 401,  :message =>"You are Not Admin"}
+    end  
+  end
+
   eval(IO.read('doc/api_doc/songs/index.html'), binding)
  
   def index
@@ -55,6 +74,7 @@ class Api::V1::SongsController < Api::V1::ApiController
   end
 
   def edit
+    @song = Song.find(params[:id])
   end  
 
   # GET /songs/new
@@ -62,28 +82,12 @@ class Api::V1::SongsController < Api::V1::ApiController
     @song = Song.new
   end
 
-  eval(IO.read('doc/api_doc/songs/create.html'), binding) 
-
-  def create
-    if current_user.role == "admin"
-      user = current_user.first_name
-      song = current_user.songs.new(admin_song_params)
-      # song.user_id = current_user.try(:id)
-       if song.save
-     
-        return render json: {status: 200, data: {song: song, user: user}, :message =>"Successfuly Create Song"} 
-      else
-        warden.custom_failure!
-        return render json: {status: 401, data: {song: nil, errors: song.errors}, :message =>"Song Rollback"} 
-      end
-    else
-       return render json: {status: 401,  :message =>"You are Not Admin"}
-    end  
-  end
+  
 
   eval(IO.read('doc/api_doc/songs/update.html'), binding)
 
   def update
+    byebug
     @song = Song.find(params[:id])
     @song.update(admin_song_params)
       if @song.save 

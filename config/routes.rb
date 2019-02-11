@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :songs
   get '/mysong', to: 'songs#mysong'
+  # patch '/api/v1/songs/:id', to: 'songs#update'
   namespace :admin do
     resources :songs
   end
@@ -11,9 +12,12 @@ Rails.application.routes.draw do
     end
   end
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'users#index'
+  get'/profile/:id', :to => 'users#profile'
+  resources :users
 
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # root 'users#index'
+  root 'users#show'
   namespace :api do
 	  namespace :v1 do
 	  	resources :users, only: [:index] 

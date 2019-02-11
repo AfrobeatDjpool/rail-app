@@ -2,23 +2,25 @@ import React from "react"
 import PropTypes from "prop-types"
 import SongListRow from './SongListRow';
 import SongForm from './SongForm'
+import SongeditForm from './SongeditForm'
 import axios from 'axios'
 
 class SongsComponent extends React.Component {
-	constructor(props) {
+  constructor(props) {
     super(props);    
-	}
+  }
 
   render () {
-  	const songs = this.props.songs;
+    const songs = this.props.songs;
     const current_user = this.props.current_user;
+    const song = this.props.song;
     return (
       <div>
-      <SongForm current_user={current_user}/>
+      <SongForm current_user={current_user} song={song}/>
 
       <table className="table">
-		    <thead>
-		      <tr>
+        <thead>
+          <tr>
             <th>ID</th>
             <th>Song Name</th>
             <th>Beats</th>
@@ -28,13 +30,13 @@ class SongsComponent extends React.Component {
             <th>Upload date</th>
           
 
-		      </tr>
-		    </thead>
-		    <tbody>
-		      {songs.map((song, index) => (
+          </tr>
+        </thead>
+        <tbody>
+          {songs.map((song, index) => (
             <SongListRow
               key={index}
-              index={index}
+              id={song.id}
               name_song={song.name_song}
               beats={song.beats} 
               genre={song.genre}
@@ -43,8 +45,8 @@ class SongsComponent extends React.Component {
               date_uploaded={song.date_uploaded}
             />
           ))}
-		    </tbody>
-		  </table>
+        </tbody>
+      </table>
       </div>
     );
   }

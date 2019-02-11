@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class UserListRow extends React.Component {
+class ProfileListRow extends React.Component {
   constructor(props) {
     super(props); 
   }
@@ -9,7 +9,6 @@ class UserListRow extends React.Component {
   render() {
     
     return (
-
       <tr>
         <td>{this.props.id}</td>
         <td>{this.props.email}</td>
@@ -24,15 +23,13 @@ class UserListRow extends React.Component {
         <td>{this.props.twitter_url}</td>
         <td>{this.props.name_club}</td>
         <td>{this.props.role}</td>
-        <td><a href={`/profile/${this.props.id}`}>Show</a></td>
-        <td><a href={`/users/${this.props.id}/edit`}>
-          Edit</a></td>
+
       </tr>
     );
   }
 }
 
-UserListRow.propTypes = {
+ProfileListRow.propTypes = {
   brand: PropTypes.string,  
   id: PropTypes.number,
   email: PropTypes.string,
@@ -49,4 +46,4 @@ UserListRow.propTypes = {
   role: PropTypes.string,
 
 };
-export default UserListRow;
+export default ProfileListRow;

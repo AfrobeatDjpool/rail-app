@@ -3,16 +3,16 @@ import PropTypes from "prop-types";
 
 import axios from 'axios'
 
-class SongForm extends Component {
+class SongeditForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: "",
-      description: "",
-      genre: "",
-      version: "",
-      artist: "",
-      date: "",     
+      title: this.props.song.name_song,
+      description: this.props.song.beats,
+      genre: this.props.song.genre,
+      version: this.props.song.version,
+      artist: this.props.song.name_artist,
+      date: this.props.song.date_uploaded,      
     };
     
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -24,16 +24,17 @@ class SongForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
- 
 
     handleSubmit = () => {
-      
+
+            // evt.preventDefault()
+
         var headers = {
             'Content-Type': 'application/json',
             'User-Token': this.props.current_user.authentication_token
         };
 
-        var postData = { admin_song: {
+        var putData = { admin_song: {
                 name_song: this.state.title,
                 beats: this.state.description,
                 genre: this.state.genre,
@@ -42,8 +43,8 @@ class SongForm extends Component {
                 date_uploaded: this.state.date
               }
             };
-
-        axios.post('http://localhost:3000/api/v1/songs', postData, {headers: headers})
+            
+        axios.put(`http://localhost:3000/songs/${this.props.song.id}`, putData, {headers: headers})
 
             .then(response => {
                 console.log(response)
@@ -77,7 +78,7 @@ class SongForm extends Component {
 
 
   render() {
-    // debugger
+      const song = this.props.song.id;
       const current_user = this.props.current_user;
 
     return (
@@ -89,7 +90,7 @@ class SongForm extends Component {
 
           <input className='input' name="body"
             placeholder='Beats'
-            value={this.state.body} onChange={this.handleDescriptionChange} />  
+            value={this.state.description} onChange={this.handleDescriptionChange} />  
           
 
           <input className='input' type="text"
@@ -115,9 +116,9 @@ class SongForm extends Component {
   }
 }
 
-SongForm.propTypes = {
+SongeditForm.propTypes = {
   title: PropTypes.string,
   authenticity_token: PropTypes.string
 };
-export default SongForm;
+export default SongeditForm;
 

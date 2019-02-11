@@ -1,50 +1,53 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-<div class="row">
-  <div class="container">
-    <div id="loginbox"  class="mainbox col-md-6 col-md-offset-3 col-sm-7 col-sm-offset-2 allSides box-outernew">
-      <div class="panel panel-info " >
-        <div class="panel-heading">
-          <div class="panel-title font-bold" >Sign Up</div>
-          <div class="panel-head"></div>
-        </div>
-        <div  class="panel-body panel-bodylogin-signin" >
-          <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-          <div class="form-inputs">
-            <%= devise_error_messages!%>
-            <br><br> 
-            <div class="form-group">
-              <label for="inputEmail3" class="col-sm-5 control-label">Email</label>
-              <div class="col-sm-7">
-                <input type="email" class="form-control " id="inputEmail3" name="user[email]" placeholder="email">
-              </div>
-            </div>
-            <br><br>
-            <div class="form-group">
-              <label for="inputEmail3" class="col-sm-5 control-label">Password</label>
-              <div class="col-sm-7">
-                <input type="password" class="form-control " id="inputEmail3"  name="user[password]" placeholder="password">
-              </div>
-            </div>
-            <br><br>
-            <div class="form-group">
-              <label for="inputEmail3" class="col-sm-5 control-label">Password Confirmation</label>
-              <div class="col-sm-7">
-                <input type="password" class="form-control " id="inputEmail3"  name="user[password_confirmation]" placeholder="password confirmation">
-              </div>
-            </div>
-            <div class="form-group ">
-              <div class="col-sm-7 ">
-                <br>
-                <%= f.submit "Sign Up", :class=>"btn btn-primary "%>
-              </div>
-            </div>
-            <%= render "devise/shared/links" %>
-          </div>
-        </div>
-      </div>
+<div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="panel panel-info">
+       <div class="panel-heading">
+          <div class="panel-title">Sign Up</div>
+          <div style="float:right; font-size: 85%; position: relative; top:-10px"><%= link_to "Sign In", new_user_session_path %></a></div>
+       </div>
+       <div class="panel-body" >
+          <%= form_for(resource, as: resource_name, :id=>"signupform", url: registration_path(resource_name), html: {class: "form-horizontal"}) do |f| %>  
+             <div id="signupalert" style="display:none" class="alert alert-danger">
+                <p>Error:</p>
+                <span></span>
+             </div>
+             <div class="form-group">
+                <label for="email" class="col-md-3 control-label">Email</label>
+                <div class="col-md-9">
+                   
+                   <%= f.email_field :email, required: false, autofocus: true, :class=>"form-control " , :placeholder=>"Email Address"%>
+                </div>
+             </div>
+             <div class="form-group">
+                <label for="firstname" class="col-md-3 control-label">First Name</label>
+                <div class="col-md-9">
+                   <%= f.text_field :first_name, required: false, autofocus: true, :class=>"form-control " , :placeholder=>"First Name"%>
+                </div>
+             </div>
+             <div class="form-group">
+                <label for="secondname" class="col-md-3 control-label">Second Name</label>
+                <div class="col-md-9">
+                   <%= f.text_field :second_name, required: false, autofocus: true, :class=>"form-control " , :placeholder=>"Second Name"%>
+                </div>
+             </div>
+             <div class="form-group">
+                <label for="password" class="col-md-3 control-label">Password</label>
+                <div class="col-md-9">
+                   <%= f.password_field :password, required: false, :class=>"form-control ", :placeholder=>"password"  %>
+                </div>
+             </div>
+             <div class="form-group">
+                <!-- Button -->                                       
+                <div class="col-md-offset-3 col-md-9">
+                   <button id="btn-signup" type="submit" class="btn btn-info event_buy_btn lc_js_link login"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
+                   <span style="margin-left:8px;">or</span>  
+                </div>
+             </div>
+             <div style="border-top: 1px solid #999; padding-top:20px"  class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                   <button id="btn-fbsignup" type="button" class="btn btn-primary event_buy_btn lc_js_link login"><i class="icon-facebook "></i>   Sign Up with Facebook</button>
+                </div>
+             </div>
+            <%end %> 
+       </div>
     </div>
-  </div>
-</div>
-<% end %>
-<br>
-<br>
+ </div>

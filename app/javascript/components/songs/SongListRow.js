@@ -11,16 +11,19 @@ class SongListRow extends React.Component {
     return (
       <tr>
         
-        <td>{this.props.index}</td>
+        <td>{this.props.id}</td>
         <td>{this.props.name_song}</td>
         <td>{this.props.beats}</td>
         <td>{this.props.genre}</td>
         <td>{this.props.version}</td>
         <td>{this.props.name_artist}</td>
         <td>{this.props.date_uploaded}</td>
-        <td><a href={`/songs/${this.props.id}`}>Edit</a></td>
-        <td><a href={`/songs/${this.props.id}`}>Show</a> </td> 
-
+        <td><a href={`/songs/${this.props.id}`}>Show</a></td>
+        <td><a href={`/songs/${this.props.id}/edit`}>
+          Edit</a></td>
+       
+        <td><a href={`/songs/${this.props.id}`}>
+          Delete</a></td>   
       </tr>
     );
   }

@@ -1,51 +1,47 @@
 import React from "react"
 import PropTypes from "prop-types"
-import SongListRow from './SongListRow';
-
+import ShowListRow from './ShowListRow';
+import axios from 'axios'
 class ShowsComponent extends React.Component {
-	constructor(props) {
-    super(props);    
-	}
-
-  render () {
-  	const songs = this.props.songs;
-    return (
-
-      <table className="table">
-		    <thead>
-		      <tr>
-            <th>ID</th>
-            <th>Song Name</th>
-            <th>Beats</th>
-            <th>Genre</th>
-            <th>Version</th>
-            <th>Artist Name</th>
-            <th>Upload date</th>
-          
-
-		      </tr>
-		    </thead>
-		    <tbody>
-		      {songs.map((song, index) => (
-            <ShowListRow
-              key={index}
-              id={song.id}
-              name_song={song.name_song}
-              beats={song.beats} 
-              genre={song.genre}
-              version={song.version} 
-              name_artist={song.name_artist}
-              date_uploaded={song.date_uploaded}
-            />
-          ))}
-		    </tbody>
-		  </table>
-    );
-  }
+constructor(props) {
+super(props);    
 }
-
+render () {
+// debugger
+const song = this.props.song;
+return (
+<div className="container">
+  <div className="row">
+    <div className="col-xs-12 col-sm-6 col-md-6">
+      <div className="well well-sm">
+        <div className="row">
+          <div className="col-sm-6 col-md-4">
+              <img src="http://placehold.it/380x500" alt="" className="img-rounded img-responsive" />
+          </div>
+          <div className="col-sm-6 col-md-8">
+            <h4>
+               {song.name_song}
+            </h4>
+            <i className=" glyphicon glyphicon-music"></i>{song.beats}
+            <br /><br />
+            <i className=" glyphicon glyphicon-music"></i>
+            {song.genre}
+           <br /><br />
+            <i className="glyphicon glyphicon-music"></i>{song.version}
+            <br /><br />
+            <i className="glyphicon glyphicon-music"></i>{song.name_artist}
+            <br /><br />
+            <i className="glyphicon glyphicon-gift"></i>{song.date_uploaded}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+);
+}
+}
 ShowsComponent.propTypes = {
-  songs: PropTypes.array,
-  tableTitle: PropTypes.string
+tableTitle: PropTypes.string
 };
 export default ShowsComponent

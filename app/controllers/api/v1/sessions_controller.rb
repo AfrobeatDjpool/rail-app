@@ -34,7 +34,7 @@ class Api::V1::SessionsController < Api::V1::ApiController
     return render json: {status:401, message: "Provider required"} if params[:provider].blank?
     return render json: {status:401, message: "OAuth access token required"} if params[:token].blank?
     return render json: {status:401, message: "Provider Not Available"} unless params[:provider] == "facebook" || params[:provider] == "twitter" || params[:provider] == "linkedin" || params[:provider] == "google"
-      # url = 'https://graph.facebook.com/v2.7/me'
+  
 
     user = Authentication.from_omniauth(params)
       if user

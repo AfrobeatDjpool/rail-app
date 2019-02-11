@@ -9,12 +9,14 @@ class UserForm extends Component {
     this.state = {
       email: "",
       password: "",
-      firstname: "", 
+      firstname: "",
+      Secondname: "", 
       role: "",    
     };
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleFirstnameChange = this.handleFirstnameChange.bind(this);
+    this.handleSecondnameChange = this.handleSecondnameChange.bind(this);
     this.handleRoleChange = this.handleRoleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -28,6 +30,7 @@ class UserForm extends Component {
                 email: this.state.email,
                 password: this.state.password,
                 first_name: this.state.firstname,
+                second_name: this.state.secondname,
                 role: this.state.role
               }
             };
@@ -53,14 +56,13 @@ class UserForm extends Component {
       this.setState({ firstname: e.target.value });
     }
 
-    handleRoleChange(e) {
-      this.setState({ role: e.target.value });
+    handleSecondnameChange(e) {
+      this.setState({ secondname: e.target.value });
     }
 
     handleRoleChange(e) {
       this.setState({ role: e.target.value });
     }
-
 
   render() {
 
@@ -76,21 +78,24 @@ class UserForm extends Component {
           <input className='input' type="text"
             name="firstname" placeholder='Enter a firstname'
             value={this.state.firstname} onChange={this.handleFirstnameChange} />
-            <p>Select Role
-            <label>
-              <input type="radio" value="admin" 
-                checked={this.state.role === 'admin'} 
-                onChange={this.handleRoleChange} />
-              admin
-            </label>
-          
-            <label>
-              <input type="radio" value="user" 
-                checked={this.state.role === 'user'} 
-                onChange={this.handleRoleChange} />
-              user
-            </label>
-            </p>
+          <input className='input' type="text"
+            name="secondname" placeholder='Enter a secondname'
+            value={this.state.secondname} onChange={this.handleSecondnameChange} />  
+          <p>Select Role
+          <label>
+            <input type="radio" value="admin" 
+              checked={this.state.role === 'admin'} 
+              onChange={this.handleRoleChange} />
+            admin
+          </label>
+        
+          <label>
+            <input type="radio" value="user" 
+              checked={this.state.role === 'user'} 
+              onChange={this.handleRoleChange} />
+            user
+          </label>
+          </p>
    
           <input className="save" type="submit" name="SAVE" />
         </form>

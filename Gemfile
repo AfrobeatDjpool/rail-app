@@ -72,3 +72,4 @@ gem "omniauth-google-oauth2"
 gem 'will_paginate', '~> 3.1.0'
 gem 'react-rails'
 gem 'apipie-rails'
+gem 'activeadmin'

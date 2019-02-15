@@ -8,22 +8,21 @@ class Api::V1::SessionsController < Api::V1::ApiController
     eval(IO.read('doc/api_doc/auth/sign_in.html'), binding) 
 
   def create
-    begin
-      return render json: {status: 401, data: {user: nil}, message: "Request Parameter not valid"} unless params[:user]
+    # begin
+ 
       email = params[:user][:email]
       password = params[:user][:password]
-      return render json: {status: 401, data: {user: nil}, message: "The request must contain the email and password."} unless email && password
+      return render json:{data: {user: nil}, message: "The request must contain the email and password."},status: 401 unless email && password
       @user = User.where(email: email).first
-      return render json: {status: 401, data: {user: nil}, message: "Invalid email or password"} if @user.blank?
-      return render json: {status: 401, data: {user: nil}, message: "Invalid email or password"} if not @user.valid_password?(password)
-      return render json: {status: 200, data: {user: current_user}, message: "You have allready Login."} if current_user
+      return render json:{data: {user: nil}, message: "Invalid email or password"},status: 401 if @user.blank?
+      return render json:{data: {user: nil},  message: "Invalid email or password"},status: 401 if not @user.valid_password?(password)
       sign_in @user
      
       # @user = @user.as_json(only: [:id,:email, :email,:name,:address,:role,:authentication_token, :image, :created_at])
-      return render json: {status: 200, data: {user: @user}, message: "Login Successful"}
-    rescue
-      rescue_section
-    end
+      return render json: {user: @user, message: "Login Successful"},status: 200
+    # rescue
+    #   rescue_section
+    # end
   end
   
    eval(IO.read('doc/api_doc/auth/facebook_login.html'), binding)
@@ -37,6 +36,19 @@ class Api::V1::SessionsController < Api::V1::ApiController
   
 
     user = Authentication.from_omniauth(params)
+      if user
+        render json: {:status => 200, :user=>user.as_json().merge(
+    
+            authentication: user.authentications,
+          ), :message =>"Login Successful"}
+      else
+        render :json=> user.errors.full_messages, :status=>401
+      end 
+  end
+
+
+  def react_social_login
+    user = Authentication.react_create_account(params)
       if user
         render json: {:status => 200, :user=>user.as_json().merge(
     

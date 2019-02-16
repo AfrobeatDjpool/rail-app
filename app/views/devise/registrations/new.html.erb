@@ -5,7 +5,13 @@
           <div style="float:right; font-size: 85%; position: relative; top:-10px"><%= link_to "Sign In", new_user_session_path %></a></div>
        </div>
        <div class="panel-body" >
-          <%= form_for(resource, as: resource_name, :id=>"signupform", url: registration_path(resource_name), html: {class: "form-horizontal"}) do |f| %>  
+          <%= form_for(resource, as: resource_name, :id=>"signupform", url: registration_path(resource_name), html: {class: "form-horizontal"}) do |f| %>  <%= devise_error_messages! %>
+            <% flash.each do |key, value| %>
+              <% if(value != "Signed out successfully.") %>
+                <div class="flash alert alert-warning <%= key %>"><%= value %></div>
+              <% end%>
+            <% end %>
+
              <div id="signupalert" style="display:none" class="alert alert-danger">
                 <p>Error:</p>
                 <span></span>
@@ -60,3 +66,9 @@
        </div>
     </div>
  </div>
+
+ <style type="text/css">
+   h2{
+    color: black;
+   }
+ </style>

@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20190212072200) do
     t.string "genre"
     t.string "version"
     t.string "name_artist"
-    t.string "date_uploaded"
+    t.date "date_uploaded"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -14,6 +14,8 @@ class User < ApplicationRecord
     first_name.to_s + " " + second_name.to_s
   end
 
+  ROLE = {1 => "admin", 2 => "user"}
+
   def admin
     self.role == 'admin'
   end

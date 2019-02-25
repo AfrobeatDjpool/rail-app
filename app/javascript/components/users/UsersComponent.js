@@ -14,6 +14,7 @@ class UsersComponent extends React.Component {
   	const users = this.props.users;
     return (
       <div>
+      <UserForm />
       
       <table className="table">
 		    <thead>

@@ -3,4 +3,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :linkedin, '81q662zzjusm67', 'xZyEHlGAaZI8Gm9q'
   provider :google_oauth2, '244615150400-05thnta81fhg631up71t8v7e167i8pta.apps.googleusercontent.com', 'XW9LFZYGtLjruVh9kOpmCaRY'
   provider :twitter, 'BUE2EqG8smNV36Jh7Spvag', 'dIVz6CEvQvnMElzAjb2rt2bUPbhsproU24o22Vc'
+  # provider :twitter, 'y6kILe3VwuGpaFIIfPXdnv8pw', 'Gb76xJS6ZvTrzzxp0jNFLnZG2nNhNaaNPfx5FAWLrL5y11e14D'
+
 end

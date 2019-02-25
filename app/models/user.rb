@@ -7,6 +7,7 @@ class User < ApplicationRecord
   before_save :ensure_authentication_token
   has_many :authentications
   has_many :songs
+  
 
     scope :admins, -> { where('role = ?', 'admin') } 
   

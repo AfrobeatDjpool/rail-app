@@ -10,7 +10,7 @@ def self.from_omniauth(auth)
     first_name = auth[:first_name].present? ? auth[:first_name] :  auth[:info][:name].split(" ").first rescue nil
 
 
-    authenticate = where(provider: auth[:provider], :uid=>auth[:uid]).first_or_initialize
+    authenticate = where(provider: auth[:provider], :uid=>auth[:userID]).first_or_initialize
     if auth[:provider] == "twitter"
       email =  auth.extra.raw_info.id.to_s+"@gmail.com"
       first_name = auth[:first_name].present? ? auth[:first_name] :  auth[:info][:name].split(" ").first rescue nil
@@ -20,14 +20,14 @@ def self.from_omniauth(auth)
     end
     if authenticate.user
       authenticate.provider = auth[:provider]
-      authenticate.uid =auth[:uid]
+      authenticate.uid =auth[:userID]
   
     else
     
       user = User.find_or_initialize_by(:email => email)
       authenticate.provider = auth[:provider]
-      authenticate.uid = auth[:uid]
-      authenticate.token = auth[:token]
+      authenticate.uid = auth[:userID]
+      authenticate.token = auth[:accessToken]
 
       user.first_name = first_name
      user.password = auth[:password]
@@ -54,7 +54,7 @@ def self.from_omniauth(auth)
     email =  auth[:email]
     first_name = auth[:first_name].present? ? auth[:first_name] :  [:name].split(" ").first rescue nil
 
-    authenticate = where(provider: auth[:provider], :uid=>auth[:uid]).first_or_initialize
+    authenticate = where(provider: auth[:provider], :uid=>auth[:userID]).first_or_initialize
     if auth[:provider] == "twitter"
       email =  auth.extra.raw_info.id.to_s+"@gmail.com"
       first_name = auth[:first_name].present? ? auth[:first_name] :  auth[:info][:name].split(" ").first rescue nil
@@ -65,14 +65,14 @@ def self.from_omniauth(auth)
 
     if authenticate.user
       authenticate.provider = auth[:provider]
-      authenticate.uid =auth[:uid]
+      authenticate.uid =auth[:userID]
   
     else
     
       user = User.find_or_initialize_by(:email => email)
       authenticate.provider = auth[:provider]
-      authenticate.uid = auth[:uid]
-      authenticate.token = auth[:token]
+      authenticate.uid = auth[:userID]
+      authenticate.token = auth[:accessToken]
 
       user.first_name = first_name
       user.password = auth[:password]

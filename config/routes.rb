@@ -32,10 +32,13 @@ Rails.application.routes.draw do
       post "/profile", :to => 'registrations#profile'
       post "/sign_up", :to => 'registrations#create'
       post"/facebook_login", :to => 'sessions#facebook_login'
+      post"/twitter", :to => 'sessions#twitter'
       post "/update_account", :to => 'registrations#update'
       get "/reset_password", :to => 'registrations#reset_password'
       post "/reset_password", :to => 'registrations#reset_password'
       resources :songs
+      post '/uplaod_audio', :to => 'songs#uplaod_audio'
+      
       get '/mysongs', to: 'songs#mysongs'
       get '/download_section', to: 'songs#download_section'
 	  end

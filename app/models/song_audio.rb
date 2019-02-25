@@ -1,0 +1,2 @@
+class SongAudio < ApplicationRecord
+end

@@ -1,6 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 import UserListRow from './UserListRow';
+import UserForm from './UserForm'
+import UsereditForm from './UsereditForm'
+import axios from 'axios'
 
 class UsersComponent extends React.Component {
 	constructor(props) {
@@ -10,7 +13,9 @@ class UsersComponent extends React.Component {
   render () {
   	const users = this.props.users;
     return (
-
+      <div>
+      <UserForm />
+      
       <table className="table">
 		    <thead>
 		      <tr>
@@ -52,6 +57,9 @@ class UsersComponent extends React.Component {
           ))}
 		    </tbody>
 		  </table>
+      </div>
+
+      
     );
   }
 }

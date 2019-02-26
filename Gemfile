@@ -40,6 +40,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'thin'
 end
 
 group :development do
@@ -79,4 +80,12 @@ gem "omniauth-google-oauth2"
 gem 'will_paginate', '~> 3.1.0'
 gem 'react-rails'
 gem 'apipie-rails'
+
+
+
+gem 'activeadmin'
+gem 'rack-cors', require: 'rack/cors'
+gem 'country_select', '~> 4.0'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'carrierwave'
 

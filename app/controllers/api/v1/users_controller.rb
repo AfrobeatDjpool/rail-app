@@ -1,5 +1,5 @@
 class Api::V1::UsersController < Api::V1::ApiController
-    before_action :authenticate_user!
+    # before_action :authenticate_user!
 
 	eval(IO.read('doc/api_doc/users/index.html'), binding)
 

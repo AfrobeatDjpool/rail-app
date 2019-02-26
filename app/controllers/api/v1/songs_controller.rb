@@ -1,13 +1,61 @@
 class Api::V1::SongsController < Api::V1::ApiController
-	# skip_before_action  :verify_authenticity_token 
+  # skip_before_action  :verify_authenticity_token 
   # before_action :authenticate_user!, only: [:destroy]
   # before_action :authenticate_user!
-	
+  
+  eval(IO.read('doc/api_doc/songs/create.html'), binding) 
+
+  # def create
+  #   # byebug
+  #   # if current_user.role == "admin"
+  #     # user = current_user.first_name
+  #     # song = current_user.new(admin_song_params)
+  #     song = Song.new(name_song: params[:song][:name_song], user_id: params[:song][:user_id])
+  #     # song.user_id = current_user.try(:id)
+  #      if song.save
+     
+  #       return render json: {status: 200, data: {song: song, user: user}, :message =>"Successfuly Create Song"} 
+  #     else
+  #       warden.custom_failure!
+  #       return render json: {status: 401, data: {song: nil, errors: song.errors}, :message =>"Song Rollback"} 
+  #     end
+  #   # else
+  #   #    return render json: {status: 401,  :message =>"You are Not Admin"}
+  #   # end  
+  # end
+  def uplaod_audio
+    @audio = SongAudio.new(name: params[:file])
+    @audio.save
+    # render :json { audio_id: @audio.id, status: 200}
+    return render json: {status: 200, data: {audio: @audio}, :message =>"Successfuly Create Uploaded"} 
+  end
+
+  def create
+    # if current_user.role == "admin"
+      # user = current_user.first_name
+      # song = current_user.new(admin_song_params)
+      song = Song.new(name_song: params[:song][:name_song], image: params[:image], user_id: params[:song][:user_id], beats: params[:song][:beats], genre: params[:song][:genre], version: params[:song][:version], name_artist: params[:song][:name_artist], date_uploaded: params[:song][:date_uploaded])
+      # song.user_id = current_user.try(:id)
+      @audio = SongAudio.find(params[:image])
+       if song.save
+        @audio.update(song_id: song.id)
+        return render json: {status: 200, data: {song: song, audio: @audio}, :message =>"Successfuly Create Song"} 
+      else
+        warden.custom_failure!
+        return render json: {status: 401, data: {song: nil, errors: song.errors}, :message =>"Song Rollback"} 
+      end
+    # else
+    #    return render json: {status: 401,  :message =>"You are Not Admin"}
+    # end  
+  end
+
   eval(IO.read('doc/api_doc/songs/index.html'), binding)
  
   def index
-    @songs = Song.all
-    render json: {status: 200, data: { :songs => @songs.as_json}, :message =>"Successfuly Show Song"}
+    songs = Song.all
+    render json: {status: 200, data: { :songs => songs.as_json}, :message =>"Successfuly Show Song"}
+    # @songs = Song.order("created_at DESC")
+    # render json: @songs
   end
 
   eval(IO.read('doc/api_doc/songs/mysong.html'), binding)
@@ -53,6 +101,7 @@ class Api::V1::SongsController < Api::V1::ApiController
   end
 
   def edit
+    @song = Song.find(params[:id])
   end  
 
   # GET /songs/new
@@ -60,28 +109,12 @@ class Api::V1::SongsController < Api::V1::ApiController
     @song = Song.new
   end
 
-  eval(IO.read('doc/api_doc/songs/create.html'), binding) 
-
-  def create
-    if current_user.role == "admin"
-      user = current_user.first_name
-      song = current_user.songs.new(admin_song_params)
-      # song.user_id = current_user.try(:id)
-       if song.save
-     
-        return render json: {status: 200, data: {song: song, user: user}, :message =>"Successfuly Create Song"} 
-      else
-        warden.custom_failure!
-        return render json: {status: 401, data: {song: nil, errors: song.errors}, :message =>"Song Rollback"} 
-      end
-    else
-      return render json: {status: 401,  :message =>"You are Not Admin"}
-    end  
-  end
+  
 
   eval(IO.read('doc/api_doc/songs/update.html'), binding)
 
   def update
+    byebug
     @song = Song.find(params[:id])
     @song.update(admin_song_params)
       if @song.save 
@@ -94,14 +127,14 @@ class Api::V1::SongsController < Api::V1::ApiController
   
 
   private
-	  def set_admin_song
-	    @admin_song = Admin::Song.find(params[:id])
-	  end
+    def set_admin_song
+      @admin_song = Admin::Song.find(params[:id])
+    end
 
-	    # Never trust parameters from the scary internet, only allow the white list through.
-	    def admin_song_params
-	      params.require(:admin_song).permit(:user_id, :name_song, :beats, :genre, :version, :name_artist, :date_upload)
-	    end
+      # Never trust parameters from the scary internet, only allow the white list through.
+      def admin_song_params
+        params.require(:admin_song).permit(:user_id, :name_song, :beats, :genre, :version, :name_artist, :image, :date_uploaded)
+      end
   
 
 end

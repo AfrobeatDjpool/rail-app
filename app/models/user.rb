@@ -7,12 +7,15 @@ class User < ApplicationRecord
   before_save :ensure_authentication_token
   has_many :authentications
   has_many :songs
+  
 
     scope :admins, -> { where('role = ?', 'admin') } 
   
   def name
     first_name.to_s + " " + second_name.to_s
   end
+
+  ROLE = {1 => "admin", 2 => "user"}
 
   def admin
     self.role == 'admin'

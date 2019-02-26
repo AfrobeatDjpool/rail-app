@@ -9,6 +9,7 @@ class UserListRow extends React.Component {
   render() {
     
     return (
+
       <tr>
         <td>{this.props.id}</td>
         <td>{this.props.email}</td>
@@ -23,7 +24,9 @@ class UserListRow extends React.Component {
         <td>{this.props.twitter_url}</td>
         <td>{this.props.name_club}</td>
         <td>{this.props.role}</td>
-
+        <td><a href={`/profile/${this.props.id}`}>Show</a></td>
+        <td><a href={`/users/${this.props.id}/edit`}>
+          Edit</a></td>
       </tr>
     );
   }

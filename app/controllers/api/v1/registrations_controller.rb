@@ -1,16 +1,21 @@
 class Api::V1::RegistrationsController < Api::V1::ApiController
   # skip_before_action  :verify_authenticity_token 
-   # skip_before_action :authenticate_user!, only: [:create, :resset_password]
-
+  #  skip_before_action :authenticate_user!, only: [:create, :resset_password]
+   eval(IO.read('doc/api_doc/auth/sign_up.html'), binding)
 	def create
-    user = User.new(registration_params)
-     if user.save
+    if params[:registration].present? && params[:user].present?
+      user = User.new(:email=>params[:user][:email],:first_name=>params[:user][:first_name], :second_name=>params[:user][:second_name], :password=>params[:user][:password], :password_confirmation=>params[:user][:password_confirmation])
+    else
+      user = User.new(registration_params)
+    end
+
+    if user.save
    
       # user = user.as_json(only: [:id,:email, :first_name,:name,:address,:role,:authentication_token, :image, :created_at])
-      return render json: {status: 200, data: {user: user}, :message =>"Successfuly Signup"} 
+      return render json: {data: {user: user},status: 200,  :message =>"Successfuly Signup"} 
     else
       warden.custom_failure!
-      return render json: {status: 401, data: {user: nil, errors: user.errors}, :message =>"SignUp Rollback"} 
+      return render json: {data: {user: nil, errors: user.errors},status: 401,  :message =>"SignUp Rollback"} 
     end
   end
   
@@ -89,6 +94,6 @@ class Api::V1::RegistrationsController < Api::V1::ApiController
    private
   
     def registration_params
-      params.require(:user).permit(:email, :first_name, :second_name, :name_label, :country, :state, :facebook_url, :instagram_url, :twitter_url, :name_club, :role, :password, :password_confirmation, :first_name, :last_name, :image, :name, :description, :city, :zip_code, :address, :role, :status)
+      params.require(:registration).permit(:email, :first_name, :second_name, :name_label, :country, :state, :facebook_url, :instagram_url, :twitter_url, :name_club, :role, :password, :password_confirmation, :city, :zip_code, :role, :status)
     end
 end

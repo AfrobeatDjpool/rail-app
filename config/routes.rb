@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  # resources :users
   resources :songs
   get '/mysong', to: 'songs#mysong'
+  # patch '/api/v1/songs/:id', to: 'songs#update'
   namespace :admin do
     resources :songs
   end
@@ -11,12 +15,16 @@ Rails.application.routes.draw do
     end
   end
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'home#index'
+  get'/profile/:id', :to => 'users#profile'
+  
 
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # root 'users#index'
+  root 'users#show'
   namespace :api do
 	  namespace :v1 do
 	  	resources :users, only: [:index] 
+      post "/users", :to => 'users#index'
 
       post "/sign_in", :to => 'sessions#create'
       delete "/sign_out", :to => 'sessions#destroy'
@@ -24,10 +32,13 @@ Rails.application.routes.draw do
       post "/profile", :to => 'registrations#profile'
       post "/sign_up", :to => 'registrations#create'
       post"/facebook_login", :to => 'sessions#facebook_login'
+      post"/twitter", :to => 'sessions#twitter'
       post "/update_account", :to => 'registrations#update'
       get "/reset_password", :to => 'registrations#reset_password'
       post "/reset_password", :to => 'registrations#reset_password'
       resources :songs
+      post '/uplaod_audio', :to => 'songs#uplaod_audio'
+      
       get '/mysongs', to: 'songs#mysongs'
       get '/download_section', to: 'songs#download_section'
 	  end

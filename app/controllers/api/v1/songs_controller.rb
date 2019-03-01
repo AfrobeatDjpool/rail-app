@@ -36,7 +36,6 @@ class Api::V1::SongsController < Api::V1::ApiController
       # song = current_user.new(admin_song_params)
       song = Song.new(name_song: params[:song][:name_song], image: params[:image], user_id: params[:song][:user_id], beats: params[:song][:beats], genre: params[:song][:genre], version: params[:song][:version], name_artist: params[:song][:name_artist], date_uploaded: params[:song][:date_uploaded])
       # song.user_id = current_user.try(:id)
-      
       if params[:image].present?
         @audio = SongAudio.find(params[:image])
       end
@@ -55,7 +54,7 @@ class Api::V1::SongsController < Api::V1::ApiController
   eval(IO.read('doc/api_doc/songs/index.html'), binding)
  
   def index
-    songs = Song.all
+    songs = current_user.songs
     render json: {status: 200, data: { :songs => songs.as_json}, :message =>"Successfuly Show Song"}
     # @songs = Song.order("created_at DESC")
     # render json: @songs

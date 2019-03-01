@@ -28,6 +28,9 @@ ActiveAdmin.register Song do
     column :date_uploaded
     column :created_at
     column :updated_at
+     column "SongAudio" do |m|
+      audio = SongAudio.find_by(song_id: m).name
+     end
     actions
   end
 

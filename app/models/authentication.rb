@@ -30,7 +30,7 @@ def self.from_omniauth(auth)
       authenticate.token = auth[:accessToken]
 
       user.first_name = first_name
-     user.password = auth[:password]
+     user.password = Devise.friendly_token.first(8)
    
       user.save(validate: false)
       authenticate.user_id = user.id
@@ -75,7 +75,7 @@ def self.from_omniauth(auth)
       authenticate.token = auth[:accessToken]
 
       user.first_name = first_name
-      user.password = auth[:password]
+      user.password = Devise.friendly_token.first(8)
    
       user.save(validate: false)
       authenticate.user_id = user.id

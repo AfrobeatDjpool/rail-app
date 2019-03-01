@@ -25,7 +25,7 @@ class Api::V1::SongsController < Api::V1::ApiController
   # end
   def uplaod_audio
     @audio = SongAudio.new(name: params[:file])
-    @audio.save
+    @audio.save(validate: false)
     # render :json { audio_id: @audio.id, status: 200}
     return render json: {status: 200, data: {audio: @audio}, :message =>"Successfuly Create Uploaded"} 
   end
@@ -36,9 +36,12 @@ class Api::V1::SongsController < Api::V1::ApiController
       # song = current_user.new(admin_song_params)
       song = Song.new(name_song: params[:song][:name_song], image: params[:image], user_id: params[:song][:user_id], beats: params[:song][:beats], genre: params[:song][:genre], version: params[:song][:version], name_artist: params[:song][:name_artist], date_uploaded: params[:song][:date_uploaded])
       # song.user_id = current_user.try(:id)
-      @audio = SongAudio.find(params[:image])
+      
+      if params[:image].present?
+        @audio = SongAudio.find(params[:image])
+      end
        if song.save
-        @audio.update(song_id: song.id)
+        @audio.update(song_id: song.id) if params[:image].present?
         return render json: {status: 200, data: {song: song, audio: @audio}, :message =>"Successfuly Create Song"} 
       else
         warden.custom_failure!

@@ -25,7 +25,7 @@ class Api::V1::SongsController < Api::V1::ApiController
   # end
   def uplaod_audio
     @audio = SongAudio.new(name: params[:file])
-    @audio.save
+    @audio.save(validate: false)
     # render :json { audio_id: @audio.id, status: 200}
     return render json: {status: 200, data: {audio: @audio}, :message =>"Successfuly Create Uploaded"} 
   end
@@ -36,9 +36,11 @@ class Api::V1::SongsController < Api::V1::ApiController
       # song = current_user.new(admin_song_params)
       song = Song.new(name_song: params[:song][:name_song], image: params[:image], user_id: params[:song][:user_id], beats: params[:song][:beats], genre: params[:song][:genre], version: params[:song][:version], name_artist: params[:song][:name_artist], date_uploaded: params[:song][:date_uploaded])
       # song.user_id = current_user.try(:id)
-      @audio = SongAudio.find(params[:image])
+      if params[:image].present?
+        @audio = SongAudio.find(params[:image])
+      end
        if song.save
-        @audio.update(song_id: song.id)
+        @audio.update(song_id: song.id) if params[:image].present?
         return render json: {status: 200, data: {song: song, audio: @audio}, :message =>"Successfuly Create Song"} 
       else
         warden.custom_failure!
@@ -52,7 +54,7 @@ class Api::V1::SongsController < Api::V1::ApiController
   eval(IO.read('doc/api_doc/songs/index.html'), binding)
  
   def index
-    songs = Song.all
+    songs = current_user.songs
     render json: {status: 200, data: { :songs => songs.as_json}, :message =>"Successfuly Show Song"}
     # @songs = Song.order("created_at DESC")
     # render json: @songs
@@ -73,12 +75,12 @@ class Api::V1::SongsController < Api::V1::ApiController
   def show
     # byebug
     @song = Song.find(params[:id])
-    @name = @song.name_song
-    # name_artist = @song.name_artist
-    # date_uploaded = @song.date_uploaded
-    # artist_upload_song = @song.user.first_name
+    name_song = @song.name_song
+    name_artist = @song.name_artist
+    date_uploaded = @song.date_uploaded
+    artist_upload_song = @song.user.first_name
     # render json: {status: 200, data: {:name_song => name_song, :name_artist => name_artist, :date_uploaded => date_uploaded, :artist_upload_song => artist_upload_song}, :message =>"Show Song Details"}
-    render json: {status: 200, data: { :song => @song.as_json, :name => @name.as_json}, :message =>"Show Song Details"}
+    render json: {status: 200, data: { :song => @song.as_json}, :message =>"Show Song Details"}
   end
 
   def download_section

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # resources :users
-  resources :songs
+  # resources :songs
   get '/mysong', to: 'songs#mysong'
   # patch '/api/v1/songs/:id', to: 'songs#update'
   namespace :admin do

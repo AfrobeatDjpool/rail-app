@@ -120,9 +120,13 @@ class Api::V1::SongsController < Api::V1::ApiController
   eval(IO.read('doc/api_doc/songs/update.html'), binding)
 
   def update
-    byebug
     @song = Song.find(params[:id])
+
     @song.update(admin_song_params)
+   
+
+    # @song.update(admin_song_params)
+    # @song.update(name_song: params[:song][:name_song], beats: params[:song][:beats], genre: params[:song][:genre], version: params[:song][:version], name_artist: params[:song][:name_artist], date_uploaded: params[:song][:date_uploaded])
       if @song.save 
        render :json =>{ status: 200, data: {location: @song}, :message => "Succssfuly Updated Song" }
       else

@@ -71,13 +71,14 @@ class Api::V1::SongsController < Api::V1::ApiController
   eval(IO.read('doc/api_doc/songs/show.html'), binding)
   
   def show
+    # byebug
     @song = Song.find(params[:id])
-    name_song = @song.name_song
-    name_artist = @song.name_artist
-    date_uploaded = @song.date_uploaded
-    artist_upload_song = @song.user.first_name
-    render json: {status: 200, data: {:name_song => name_song, :name_artist => name_artist, :date_uploaded => date_uploaded, :artist_upload_song => artist_upload_song}, :message =>"Show Song Details"}
-    # render json: {status: 200, data: { :songs => @song.as_json, :name_song => name_song, :name_artist => name_artist, :date_uploaded => date_uploaded, :artist_upload_song => artist_upload_song}, :message =>"Show Song Details"}
+    @name = @song.name_song
+    # name_artist = @song.name_artist
+    # date_uploaded = @song.date_uploaded
+    # artist_upload_song = @song.user.first_name
+    # render json: {status: 200, data: {:name_song => name_song, :name_artist => name_artist, :date_uploaded => date_uploaded, :artist_upload_song => artist_upload_song}, :message =>"Show Song Details"}
+    render json: {status: 200, data: { :song => @song.as_json, :name => @name.as_json}, :message =>"Show Song Details"}
   end
 
   def download_section
@@ -102,6 +103,9 @@ class Api::V1::SongsController < Api::V1::ApiController
 
   def edit
     @song = Song.find(params[:id])
+    render json: {status: 200, data: { :song => @song.as_json, :name => @name.as_json}, :message =>"Song Details"}
+
+
   end  
 
   # GET /songs/new

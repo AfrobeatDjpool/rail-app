@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 	  	resources :users, only: [:index] 
       post "/users", :to => 'users#index'
 
+
       post "/sign_in", :to => 'sessions#create'
       delete "/sign_out", :to => 'sessions#destroy'
       get "/profile", :to => 'registrations#profile'
@@ -36,8 +37,10 @@ Rails.application.routes.draw do
       post "/update_account", :to => 'registrations#update'
       get "/reset_password", :to => 'registrations#reset_password'
       post "/reset_password", :to => 'registrations#reset_password'
+      
       resources :songs
       post '/uplaod_audio', :to => 'songs#uplaod_audio'
+      post "/songs/:id", :to => 'songs#update'
       
       get '/mysongs', to: 'songs#mysongs'
       get '/download_section', to: 'songs#download_section'

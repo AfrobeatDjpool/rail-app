@@ -30,17 +30,20 @@ Rails.application.routes.draw do
       post "/sign_in", :to => 'sessions#create'
       delete "/sign_out", :to => 'sessions#destroy'
       get "/profile", :to => 'registrations#profile'
-      post "/profile", :to => 'registrations#profile'
+       post "/profile", :to => 'registrations#profile'
+      post "/profile/:id", :to => 'registrations#profile'
       post "/sign_up", :to => 'registrations#create'
       post"/facebook_login", :to => 'sessions#facebook_login'
       post"/twitter", :to => 'sessions#twitter'
-      post "/update_account", :to => 'registrations#update'
+      post "/update_account/:id", :to => 'registrations#update_account'
+      post "/edit/:id", :to => 'registrations#edit'
       get "/reset_password", :to => 'registrations#reset_password'
       post "/reset_password", :to => 'registrations#reset_password'
       
       resources :songs
       post '/uplaod_audio', :to => 'songs#uplaod_audio'
       post "/songs/:id", :to => 'songs#update'
+      post "/songs/:id/delete", :to => 'songs#destroy'
       
       get '/mysongs', to: 'songs#mysongs'
       get '/download_section', to: 'songs#download_section'

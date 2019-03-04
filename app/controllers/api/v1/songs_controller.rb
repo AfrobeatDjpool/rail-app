@@ -73,7 +73,6 @@ class Api::V1::SongsController < Api::V1::ApiController
   eval(IO.read('doc/api_doc/songs/show.html'), binding)
   
   def show
-    # byebug
     @song = Song.find(params[:id])
     name_song = @song.name_song
     name_artist = @song.name_artist

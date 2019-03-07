@@ -74,7 +74,7 @@ class Api::V1::RegistrationsController < Api::V1::ApiController
     # end   
   end
 
-  eval(IO.read('doc/api_doc/auth/edit_profile.html'), binding)
+  
 
   # def update
   #   begin
@@ -94,6 +94,7 @@ class Api::V1::RegistrationsController < Api::V1::ApiController
   #     rescue_section
   #   end
   # end 
+  eval(IO.read('doc/api_doc/auth/edit_profile.html'), binding)
 
   def update_account
     @user = User.find(params[:id])

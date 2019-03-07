@@ -1,4 +1,4 @@
-api :POST, '/api/v1/update_account', "Edit Profile"
+api :POST, '/api/v1/update_account/1', "Edit Profile"
 error 401, "Unauthorized"
 error 404, "Page not found"
 error 403, "Something went wrong"
@@ -18,7 +18,7 @@ Api Details:
     api_name: Edit Profile,
     method: POST,
     version: v1,
-    path: /api/v1/update_account,
+    path: /api/v1/update_account/1,
     host: example.com
   }
 
@@ -29,7 +29,7 @@ example <<-TEXT
 Header Body:
 ---------------------------------------
   {
-    User-Token: nTgBRwsVxv7aX8SSadTY
+    Content-Type: application/json
   }
 
 TEXT

@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       resources :songs
       post '/uplaod_audio', :to => 'songs#uplaod_audio'
       post "/songs/:id", :to => 'songs#update'
+      post "/songs/:id/download", :to => 'songs#download'
       post "/songs/:id/delete", :to => 'songs#destroy'
       
       get '/mysongs', to: 'songs#mysongs'

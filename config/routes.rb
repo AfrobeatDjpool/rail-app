@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       post "/edit/:id", :to => 'registrations#edit'
       get "/reset_password", :to => 'registrations#reset_password'
       post "/reset_password", :to => 'registrations#reset_password'
+      post "/genres", :to => 'genres#index'
       
       resources :songs
       post '/uplaod_audio', :to => 'songs#uplaod_audio'

@@ -54,7 +54,7 @@ class Api::V1::SongsController < Api::V1::ApiController
   eval(IO.read('doc/api_doc/songs/index.html'), binding)
  
   def index
-    songs = current_user.songs
+    songs = Song.all
     render json: {status: 200, data: { :songs => songs.as_json}, :message =>"Successfuly Show Song"}
     # @songs = Song.order("created_at DESC")
     # render json: @songs
